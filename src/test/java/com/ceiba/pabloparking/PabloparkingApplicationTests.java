@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.ceiba.pabloparking;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +11,7 @@ public class PabloparkingApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
 	}
 
 }
