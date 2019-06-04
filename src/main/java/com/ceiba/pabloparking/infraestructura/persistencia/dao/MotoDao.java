@@ -1,20 +1,11 @@
 package com.ceiba.pabloparking.infraestructura.persistencia.dao;
 
-import com.ceiba.pabloparking.dominio.Moto;
+import org.springframework.data.repository.CrudRepository;
 
-public interface MotoDao {
-		
-	/**
-	 * Permite obtener una moto dado un placa
-	 * @param placa
-	 * @return
-	 */
-	public Moto obtenerPorPlaca(String placa);
+import com.ceiba.pabloparking.infraestructura.persistencia.entidad.MotoEntidad;
 
-	/**
-	 * Permite agregar una moto
-	 * @param moto
-	 */
-	public void agregar(Moto moto);
+public interface MotoDao extends CrudRepository<MotoEntidad, Long> {
+	
+	public MotoEntidad findByPlaca(String placa);
 
 }
