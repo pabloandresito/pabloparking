@@ -5,7 +5,9 @@ import com.ceiba.pabloparking.infraestructura.persistencia.entidad.MotoEntidad;
 
 public class MotoBuilder {
 
-	private MotoBuilder() {}
+	private MotoBuilder() {
+		super();
+	}
 	
 	public static Moto convertirADominio(MotoEntidad motoEntidad) {
 		
