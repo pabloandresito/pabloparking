@@ -1,4 +1,4 @@
-package com.ceiba.pabloparking.infraestructura.persistencia.entidad.builder;
+package com.ceiba.pabloparking.aplicacion.builder;
 
 import com.ceiba.pabloparking.dominio.Moto;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.MotoEntidad;

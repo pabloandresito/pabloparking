@@ -3,9 +3,9 @@ package com.ceiba.pabloparking.infraestructura.persistencia.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.ceiba.pabloparking.aplicacion.builder.MotoBuilder;
 import com.ceiba.pabloparking.dominio.Moto;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.MotoEntidad;
-import com.ceiba.pabloparking.infraestructura.persistencia.entidad.builder.MotoBuilder;
 
 public class MotoDaoImpl implements MotoDao {
 	
