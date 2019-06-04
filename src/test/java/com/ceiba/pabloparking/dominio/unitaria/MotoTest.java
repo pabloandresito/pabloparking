@@ -17,8 +17,8 @@ public class MotoTest {
 		
 		// arrange
 		MotoTestDataBuilder motoTestDataBuilder = new MotoTestDataBuilder().
-				conPlaca(PLACA).
-				conCilindraje(CILINDRAJE);
+				withPlaca(PLACA).
+				withCilindraje(CILINDRAJE);
 
 		// act
 		Moto moto = motoTestDataBuilder.build();

@@ -17,12 +17,12 @@ public class MotoTestDataBuilder {
 		
 	}
 
-	public MotoTestDataBuilder conPlaca(String placa) {
+	public MotoTestDataBuilder withPlaca(String placa) {
 		this.placa = placa;
 		return this;
 	}
 
-	public MotoTestDataBuilder conCilindraje(Integer cilindraje) {
+	public MotoTestDataBuilder withCilindraje(Integer cilindraje) {
 		this.cilindraje = cilindraje;
 		return this;
 	}
