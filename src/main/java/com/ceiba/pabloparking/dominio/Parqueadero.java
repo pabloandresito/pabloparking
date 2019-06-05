@@ -3,6 +3,7 @@ package com.ceiba.pabloparking.dominio;
 import org.joda.time.DateTime;
 
 public class Parqueadero {
+	// TODO probles - Cambiar nombre de la clase
 	
 	private Integer tipoVehiculo;
 	private String placa;
@@ -12,10 +13,6 @@ public class Parqueadero {
 	private Double valorParqueo;
 	private Integer estadoInOut;
 	private Long idVigilante;
-
-	public Parqueadero() {
-		super();
-	}
 
 	public Parqueadero(Integer tipoVehiculo, String placa, Integer cilindraje, DateTime fechaHoraIngreso,
 			DateTime fechaHoraSalida, Double valorParqueo, Integer estadoInOut, Long idVigilante) {
@@ -28,6 +25,7 @@ public class Parqueadero {
 		this.valorParqueo = valorParqueo;
 		this.estadoInOut = estadoInOut;
 		this.idVigilante = idVigilante;
+		// TODO probles - Se debe validar atributos por ejemplo las fechas y tener atributos consistentes
 	}
 
 
@@ -46,7 +44,7 @@ public class Parqueadero {
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
-	}
+	} // TODO probles - No es necesario tener eeste set debido a que debemos representar la realidad 
 
 	public Integer getCilindraje() {
 		return cilindraje;

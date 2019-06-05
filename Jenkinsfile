@@ -15,9 +15,7 @@ pipeline{
 		}
 	
 		options {
-			// Mantener artefactos y salida de consola para el # específico de ejecuciones recientes del Pipeline.
 			buildDiscarder(logRotator(numToKeepStr: '5'))
-			// No permitir ejecuciones concurrentes de Pipeline
 			disableConcurrentBuilds()
 		}
 		
@@ -33,15 +31,16 @@ pipeline{
 			stage('Checkout') {
 				steps {
                 echo '------------>Checkout desde Git Microservicio<------------'
-                checkout([$class: 'GitSCM', branches: [[name: '${BRANCH_NAME}']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Microservicio']], gitTool: 'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId: '7fe28495-6f45-4577-8c7b-dce727e78f14', url: 'pabloparkingurl']]])
+                checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'pabloparking']], gitTool: 'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId: '7fe28495-6f45-4577-8c7b-dce727e78f14', url: 'https://github.com/pabloandresito/pabloparking.git']]])
 				}
 			}
-				
+		
+		
 			stage('Compile'){
 				parallel {
 					stage('Compile backend'){
 						steps{
-							echo "------------>CompilaciÃ³n backend<------------"
+							echo "------------>Compilación backend<------------"
 							dir("${PROJECT_PATH_BACK}"){
 								sh 'gradle build -x test'
 							}
@@ -66,9 +65,9 @@ pipeline{
 			
 			stage('Sonar Analysis'){
 				steps{
-					echo '------------>Analisis de cÃ³digo estÃ¡tico<------------'
+					echo '------------>Analisis de código estático<------------'
 					  withSonarQubeEnv('Sonar') {
-                        sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=pabloparking.${BRANCH_NAME} -Dsonar.projectName=pabloparking.${BRANCH_NAME} -Dproject.settings=./sonar-project.properties"
+                        sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=pabloparking.master -Dsonar.projectName=pabloparking.master -Dproject.settings=./sonar-project.properties"
                      }
 				}
 			}
