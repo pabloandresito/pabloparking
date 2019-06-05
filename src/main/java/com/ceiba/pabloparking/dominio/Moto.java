@@ -1,12 +1,21 @@
 package com.ceiba.pabloparking.dominio;
 
-public class Moto extends Vehiculo {
+public class Moto {
 	
+	private String placa;
 	private Integer cilindraje;
 
 	public Moto(String placa, Integer cilindraje) {
-		this.setPlaca(placa);
+		this.placa = placa;
 		this.cilindraje = cilindraje;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 
 	public Integer getCilindraje() {
@@ -17,7 +26,6 @@ public class Moto extends Vehiculo {
 		this.cilindraje = cilindraje;
 	}
 
-	@Override
 	public void calcularPrecioParqueo() {
 		
 	}

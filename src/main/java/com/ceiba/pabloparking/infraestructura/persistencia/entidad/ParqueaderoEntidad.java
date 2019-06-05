@@ -24,7 +24,7 @@ public class ParqueaderoEntidad {
 	@Column
 	private Integer cilindraje;
 	
-	@Column(nullable = false)
+	@Column
 	private DateTime fechaHoraIngreso;
 	
 	@Column
