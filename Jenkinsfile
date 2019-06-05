@@ -15,7 +15,9 @@ pipeline{
 		}
 	
 		options {
+			// Mantener artefactos y salida de consola para el # espec�fico de ejecuciones recientes del Pipeline.
 			buildDiscarder(logRotator(numToKeepStr: '5'))
+			// No permitir ejecuciones concurrentes de Pipeline
 			disableConcurrentBuilds()
 		}
 		
@@ -31,20 +33,10 @@ pipeline{
 			stage('Checkout') {
 				steps {
                 echo '------------>Checkout desde Git Microservicio<------------'
-                checkout([$class: 'GitSCM', branches: [[name: '${BRANCH_NAME}']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Microservicio']], gitTool: 'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId: '7fe28495-6f45-4577-8c7b-dce727e78f14', url: 'ceibatesturl']]])
+                checkout([$class: 'GitSCM', branches: [[name: '${BRANCH_NAME}']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Microservicio']], gitTool: 'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId: '7fe28495-6f45-4577-8c7b-dce727e78f14', url: 'pabloparkingurl']]])
 				}
 			}
-		
-		
-		
-			stage('Checkout-comun') {
-			steps {
-                echo '------------>Checkout desde Git Comun<------------'
-
-                checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Comun']], gitTool: 'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId: '7fe28495-6f45-4577-8c7b-dce727e78f14', url: '']]])
-				}
-			}
-		
+				
 			stage('Compile'){
 				parallel {
 					stage('Compile backend'){
@@ -76,7 +68,7 @@ pipeline{
 				steps{
 					echo '------------>Analisis de código estático<------------'
 					  withSonarQubeEnv('Sonar') {
-                        sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=ceibatest.${BRANCH_NAME} -Dsonar.projectName=ceibatest.${BRANCH_NAME} -Dproject.settings=./sonar-project.properties"
+                        sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=pabloparking.${BRANCH_NAME} -Dsonar.projectName=pabloparking.${BRANCH_NAME} -Dproject.settings=./sonar-project.properties"
                      }
 				}
 			}
