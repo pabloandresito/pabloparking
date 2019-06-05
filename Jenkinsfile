@@ -31,7 +31,7 @@ pipeline{
 			stage('Checkout') {
 				steps {
                 echo '------------>Checkout desde Git Microservicio<------------'
-                checkout([$class: 'GitSCM', branches: [[name: '${BRANCH_NAME}']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'pabloparking']], gitTool: 'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId: '7fe28495-6f45-4577-8c7b-dce727e78f14', url: 'https://github.com/pabloandresito/pabloparking.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'pabloparking']], gitTool: 'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId: '7fe28495-6f45-4577-8c7b-dce727e78f14', url: 'https://github.com/pabloandresito/pabloparking.git']]])
 				}
 			}
 		
@@ -67,7 +67,7 @@ pipeline{
 				steps{
 					echo '------------>Analisis de código estático<------------'
 					  withSonarQubeEnv('Sonar') {
-                        sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=pabloparking.${BRANCH_NAME} -Dsonar.projectName=pabloparking.${BRANCH_NAME} -Dproject.settings=./sonar-project.properties"
+                        sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=pabloparking.master -Dsonar.projectName=pabloparking.master -Dproject.settings=./sonar-project.properties"
                      }
 				}
 			}
