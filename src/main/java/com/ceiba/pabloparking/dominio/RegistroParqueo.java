@@ -2,7 +2,16 @@ package com.ceiba.pabloparking.dominio;
 
 import java.time.LocalDateTime;
 
+import com.ceiba.pabloparking.dominio.validacion.ValidadorArgumento;
+
 public class RegistroParqueo {
+	
+	private static final String OBLIGATORIO_TIPO_VEHICULO = "Se debe ingresar el tipo de vehiculo.";
+	private static final String NO_VACIO_PLACA = "Se debe ingresar la placa del vehiculo.";
+	private static final String OBLIGATORIO_CILINDRAJE_MOTO = "Se debe ingresar el cilindraje de la moto.";
+	private static final String POSITIVO_CILINDRAJE_MOTO = "Se debe ingresar un cilindraje mayor que cero.";
+	private static final String OBLIGATORIO_FECHA_INGRESO = "Se debe llenar la fecha de ingreso.";
+	private static final String OBLIGATORIO_ESTADO_IN_OUT = "Se debe indicar el estado del carro (Ingresado o Retirado).";
 	
 	private Integer tipoVehiculo;
 	private String placa;
@@ -12,28 +21,46 @@ public class RegistroParqueo {
 	private Double valorParqueo;
 	private Integer estadoInOut;
 	
-	public RegistroParqueo(Integer tipoVehiculo, String placa, Integer cilindraje, LocalDateTime fechaHoraIngreso,
-			LocalDateTime fechaHoraSalida, Double valorParqueo, Integer estadoInOut) {
-		super();
+	public RegistroParqueo(Integer tipoVehiculo, String placa, Integer cilindraje, LocalDateTime fechaHoraIngreso) {
+		
+		// Validar tipoVehiculo
+		ValidadorArgumento.validarObligatorio(tipoVehiculo, OBLIGATORIO_TIPO_VEHICULO);
+		
+		// Validar placa
+		ValidadorArgumento.validarNoVacioString(placa, NO_VACIO_PLACA);
+		
+		// Validar cilindraje
+		if(tipoVehiculo == TipoVehiculo.MOTO.getIdTipoVehiculo()) {
+			ValidadorArgumento.validarObligatorio(cilindraje, OBLIGATORIO_CILINDRAJE_MOTO);
+			ValidadorArgumento.validarPositivo(new Double(cilindraje), POSITIVO_CILINDRAJE_MOTO);
+			
+		} else { // Si el Vehiculo no es una moto entonces nos aseguramos que el cilindraje este null
+			cilindraje = null;
+		}
+		
+		// Validar fechaHoraIngreso
+		ValidadorArgumento.validarObligatorio(fechaHoraIngreso, OBLIGATORIO_FECHA_INGRESO);
+		
+		// Validar estadoInOut
+		ValidadorArgumento.validarObligatorio(estadoInOut, OBLIGATORIO_ESTADO_IN_OUT);
+		
 		this.tipoVehiculo = tipoVehiculo;
 		this.placa = placa;
 		this.cilindraje = cilindraje;
 		this.fechaHoraIngreso = fechaHoraIngreso;
-		this.fechaHoraSalida = fechaHoraSalida;
-		this.valorParqueo = valorParqueo;
-		this.estadoInOut = estadoInOut;
-		// TODO probles - Se debe validar atributos por ejemplo las fechas y tener atributos consistentes
+		this.fechaHoraSalida = null;
+		this.valorParqueo = null;
+		this.estadoInOut = EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado();
 	}
-
-
 
 	public Integer getTipoVehiculo() {
 		return tipoVehiculo;
 	}
 
-	public void setTipoVehiculo(Integer tipoVehiculo) {
-		this.tipoVehiculo = tipoVehiculo;
-	}
+	// A nivel de negocio no se debe poder modificar el tipo de vehiculo y por está razon se quita el método SET
+//	public void setTipoVehiculo(Integer tipoVehiculo) {
+//		this.tipoVehiculo = tipoVehiculo;
+//	}
 
 	public String getPlaca() {
 		return placa;
@@ -41,7 +68,7 @@ public class RegistroParqueo {
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
-	} // TODO probles - No es necesario tener eeste set debido a que debemos representar la realidad 
+	}
 
 	public Integer getCilindraje() {
 		return cilindraje;

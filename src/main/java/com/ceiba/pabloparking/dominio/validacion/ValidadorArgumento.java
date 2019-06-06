@@ -7,6 +7,8 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorObligatorio;
@@ -27,6 +29,12 @@ public class ValidadorArgumento {
         }
     }
     
+    public static void validarNoVacioString(Object valor, String mensaje) {
+        if (StringUtils.isBlank((CharSequence) valor)) {
+            throw new ExcepcionValorObligatorio(mensaje);
+        }
+    }
+    
     public static <T> void validarNoVacio(List<T> lista, String mensaje) {
         if (lista.isEmpty()) {
             throw new ExcepcionValorObligatorio(mensaje);
@@ -34,7 +42,7 @@ public class ValidadorArgumento {
     }
 
     public static void validarPositivo(Double valor, String mensaje) {
-        if (valor <= 0) {
+        if (valor <= 0d) {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
@@ -89,7 +97,7 @@ public class ValidadorArgumento {
 
     public static void validarNumerico(String valor,String mensaje) {
         try {
-            Long.parseLong(valor);
+            Double.parseDouble(valor);
         } catch (NumberFormatException numberFormatException) {
             throw new ExcepcionValorInvalido(mensaje);
         }
