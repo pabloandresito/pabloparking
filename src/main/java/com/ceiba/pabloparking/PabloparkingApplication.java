@@ -11,7 +11,7 @@ import com.ceiba.pabloparking.aplicacion.builder.MotoBuilder;
 import com.ceiba.pabloparking.aplicacion.builder.ParqueaderoBuilder;
 import com.ceiba.pabloparking.dominio.EstadoVehiculo;
 import com.ceiba.pabloparking.dominio.Moto;
-import com.ceiba.pabloparking.dominio.Parqueadero;
+import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
 import com.ceiba.pabloparking.infraestructura.persistencia.dao.MotoDao;
 import com.ceiba.pabloparking.infraestructura.persistencia.dao.ParqueaderoDao;
@@ -61,7 +61,7 @@ public class PabloparkingApplication {
 	public CommandLineRunner demoParqueadero(ParqueaderoDao parqueaderoDao) {
 		return (args) -> {
 			// save a couple of customers
-			parqueaderoDao.save(ParqueaderoBuilder.convertirAEntity(new Parqueadero(TipoVehiculo.CARRO.getIdTipoVehiculo(), "MSP777", 200, null, null, 5000d, EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado(), 1l)));
+			parqueaderoDao.save(ParqueaderoBuilder.convertirAEntity(new RegistroParqueo(TipoVehiculo.CARRO.getIdTipoVehiculo(), "MSP777", 200, null, null, 5000d, EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado())));
 			//parqueaderoDao.save(ParqueaderoBuilder.convertirAEntity(new Parqueadero(TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSP888", null, (new DateTime()), (new DateTime()), 5000d, EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado(), 1l)));
 			
 			// fetch all customers

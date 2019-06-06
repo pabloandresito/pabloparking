@@ -2,8 +2,7 @@ package com.ceiba.pabloparking.dominio;
 
 import org.joda.time.DateTime;
 
-public class Parqueadero {
-	// TODO probles - Cambiar nombre de la clase
+public class RegistroParqueo {
 	
 	private Integer tipoVehiculo;
 	private String placa;
@@ -12,10 +11,9 @@ public class Parqueadero {
 	private DateTime fechaHoraSalida;
 	private Double valorParqueo;
 	private Integer estadoInOut;
-	private Long idVigilante;
-
-	public Parqueadero(Integer tipoVehiculo, String placa, Integer cilindraje, DateTime fechaHoraIngreso,
-			DateTime fechaHoraSalida, Double valorParqueo, Integer estadoInOut, Long idVigilante) {
+	
+	public RegistroParqueo(Integer tipoVehiculo, String placa, Integer cilindraje, DateTime fechaHoraIngreso,
+			DateTime fechaHoraSalida, Double valorParqueo, Integer estadoInOut) {
 		super();
 		this.tipoVehiculo = tipoVehiculo;
 		this.placa = placa;
@@ -24,7 +22,6 @@ public class Parqueadero {
 		this.fechaHoraSalida = fechaHoraSalida;
 		this.valorParqueo = valorParqueo;
 		this.estadoInOut = estadoInOut;
-		this.idVigilante = idVigilante;
 		// TODO probles - Se debe validar atributos por ejemplo las fechas y tener atributos consistentes
 	}
 
@@ -84,13 +81,5 @@ public class Parqueadero {
 
 	public void setEstadoInOut(Integer estadoInOut) {
 		this.estadoInOut = estadoInOut;
-	}
-
-	public Long getIdVigilante() {
-		return idVigilante;
-	}
-
-	public void setIdVigilante(Long idVigilante) {
-		this.idVigilante = idVigilante;
 	}
 }

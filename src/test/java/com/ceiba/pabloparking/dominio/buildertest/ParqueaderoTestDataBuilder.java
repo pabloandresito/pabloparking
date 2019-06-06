@@ -3,7 +3,7 @@ package com.ceiba.pabloparking.dominio.buildertest;
 import org.joda.time.DateTime;
 
 import com.ceiba.pabloparking.dominio.EstadoVehiculo;
-import com.ceiba.pabloparking.dominio.Parqueadero;
+import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.ParqueaderoEntidad;
 
@@ -20,7 +20,6 @@ public class ParqueaderoTestDataBuilder {
 	private static final DateTime FECHAHORASALIDA = new DateTime(2019, 5, 5, 13, 10, 0, 0);
 	private static final Double VALORPARQUEO = 6000d;
 	private static final Integer ESTADOINOUT = EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado();
-	private static final Long IDVIGILANTE = 1l;
 	
 	private Integer tipoVehiculo;
 	private String placa;
@@ -29,7 +28,6 @@ public class ParqueaderoTestDataBuilder {
 	private DateTime fechaHoraSalida;
 	private Double valorParqueo;
 	private Integer estadoInOut;
-	private Long idVigilante;
 	
 	public ParqueaderoTestDataBuilder() {
 		this.tipoVehiculo = TIPOVEHICULO;
@@ -39,7 +37,6 @@ public class ParqueaderoTestDataBuilder {
 		this.fechaHoraSalida = FECHAHORASALIDA;
 		this.valorParqueo = VALORPARQUEO;
 		this.estadoInOut = ESTADOINOUT;
-		this.idVigilante = IDVIGILANTE;	
 	}
 	
 	public ParqueaderoTestDataBuilder withTipoVehiculo(Integer tipoVehiculo) {
@@ -77,14 +74,9 @@ public class ParqueaderoTestDataBuilder {
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withIdVigilante(Long idVigilante) {
-		this.idVigilante = idVigilante;
-		return this;
-	}
-
-	public Parqueadero build() {
-		return new Parqueadero(this.tipoVehiculo, this.placa, this.cilindraje, this.fechaHoraIngreso, this.fechaHoraSalida, 
-																			this.valorParqueo, this.estadoInOut, this.idVigilante);
+	public RegistroParqueo build() {
+		return new RegistroParqueo(this.tipoVehiculo, this.placa, this.cilindraje, this.fechaHoraIngreso, this.fechaHoraSalida, 
+																			this.valorParqueo, this.estadoInOut);
 	}
 	
 	public ParqueaderoEntidad buildEntity() {
@@ -98,7 +90,6 @@ public class ParqueaderoTestDataBuilder {
 		parqueaderoEntidad.setFechaHoraSalida(this.fechaHoraSalida); 
 		parqueaderoEntidad.setValorParqueo(this.valorParqueo); 
 		parqueaderoEntidad.setEstadoInOut(this.estadoInOut);
-		parqueaderoEntidad.setIdVigilante(this.idVigilante);
 		
 		return parqueaderoEntidad;
 	}

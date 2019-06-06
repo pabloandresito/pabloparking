@@ -1,24 +1,24 @@
 package com.ceiba.pabloparking.aplicacion.builder;
 
-import com.ceiba.pabloparking.dominio.Parqueadero;
+import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.ParqueaderoEntidad;
 
 public class ParqueaderoBuilder {
 
-	public static Parqueadero convertirADominio(ParqueaderoEntidad parqueaderoEntidad) {
+	public static RegistroParqueo convertirADominio(ParqueaderoEntidad parqueaderoEntidad) {
 		
-		Parqueadero parqueadero = null;
+		RegistroParqueo parqueadero = null;
 		
 		if(parqueaderoEntidad != null) {
-			parqueadero = new Parqueadero(parqueaderoEntidad.getTipoVehiculo(), parqueaderoEntidad.getPlaca(), parqueaderoEntidad.getCilindraje(), 
+			parqueadero = new RegistroParqueo(parqueaderoEntidad.getTipoVehiculo(), parqueaderoEntidad.getPlaca(), parqueaderoEntidad.getCilindraje(), 
 											parqueaderoEntidad.getFechaHoraIngreso(), parqueaderoEntidad.getFechaHoraSalida(), parqueaderoEntidad.getValorParqueo(), 
-											parqueaderoEntidad.getEstadoInOut(), parqueaderoEntidad.getIdVigilante());
+											parqueaderoEntidad.getEstadoInOut());
 		}
 		
 		return parqueadero;
 	}
 	
-	public static ParqueaderoEntidad convertirAEntity(Parqueadero parqueadero) {
+	public static ParqueaderoEntidad convertirAEntity(RegistroParqueo parqueadero) {
 		
 		ParqueaderoEntidad parqueaderoEntidad = new ParqueaderoEntidad();
 		
@@ -29,7 +29,6 @@ public class ParqueaderoBuilder {
 		parqueaderoEntidad.setFechaHoraSalida(parqueadero.getFechaHoraSalida()); 
 		parqueaderoEntidad.setValorParqueo(parqueadero.getValorParqueo()); 
 		parqueaderoEntidad.setEstadoInOut(parqueadero.getEstadoInOut());
-		parqueaderoEntidad.setIdVigilante(parqueadero.getIdVigilante());
 		
 		return parqueaderoEntidad;
 	}

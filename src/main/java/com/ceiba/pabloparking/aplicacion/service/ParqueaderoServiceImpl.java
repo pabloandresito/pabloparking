@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ceiba.pabloparking.aplicacion.builder.ParqueaderoBuilder;
-import com.ceiba.pabloparking.dominio.Parqueadero;
+import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.infraestructura.persistencia.dao.ParqueaderoDao;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.ParqueaderoEntidad;
 
@@ -18,10 +18,10 @@ public class ParqueaderoServiceImpl implements ParqueaderoService {
 	ParqueaderoDao parqueaderoDao;
 
 	@Override
-	public List<Parqueadero> consultarCarros() {
+	public List<RegistroParqueo> consultarCarros() {
 		Iterable<ParqueaderoEntidad> listCarrosParqueadosEntidad =  parqueaderoDao.findAll();
 		
-		List<Parqueadero> listCarrosParqueados = new ArrayList<Parqueadero>();
+		List<RegistroParqueo> listCarrosParqueados = new ArrayList<RegistroParqueo>();
 		for (ParqueaderoEntidad parqueaderoEntidad : listCarrosParqueadosEntidad) {
 			listCarrosParqueados.add(ParqueaderoBuilder.convertirADominio(parqueaderoEntidad));
 		}
@@ -29,10 +29,10 @@ public class ParqueaderoServiceImpl implements ParqueaderoService {
 	}
 
 	@Override
-	public List<Parqueadero> consultarMotos() {
+	public List<RegistroParqueo> consultarMotos() {
 		Iterable<ParqueaderoEntidad> listMotosParqueadasEntidad =  parqueaderoDao.findAll();
 		
-		List<Parqueadero> listMotosParqueadas = new ArrayList<Parqueadero>();
+		List<RegistroParqueo> listMotosParqueadas = new ArrayList<RegistroParqueo>();
 		for (ParqueaderoEntidad parqueaderoEntidad : listMotosParqueadasEntidad) {
 			listMotosParqueadas.add(ParqueaderoBuilder.convertirADominio(parqueaderoEntidad));
 		}

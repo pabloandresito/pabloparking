@@ -36,9 +36,6 @@ public class ParqueaderoEntidad {
 	@Column(nullable = false)
 	private Integer estadoInOut;
 	
-	@Column
-	private Long idVigilante;
-
 	public ParqueaderoEntidad() {
 		super();
 	}
@@ -106,13 +103,4 @@ public class ParqueaderoEntidad {
 	public void setEstadoInOut(Integer estadoInOut) {
 		this.estadoInOut = estadoInOut;
 	}
-
-	public Long getIdVigilante() {
-		return idVigilante;
-	}
-
-	public void setIdVigilante(Long idVigilante) {
-		this.idVigilante = idVigilante;
-	}
-
 }
