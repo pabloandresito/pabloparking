@@ -11,7 +11,6 @@ public class RegistroParqueo {
 	private static final String OBLIGATORIO_CILINDRAJE_MOTO = "Se debe ingresar el cilindraje de la moto.";
 	private static final String POSITIVO_CILINDRAJE_MOTO = "Se debe ingresar un cilindraje mayor que cero.";
 	private static final String OBLIGATORIO_FECHA_INGRESO = "Se debe llenar la fecha de ingreso.";
-	private static final String OBLIGATORIO_ESTADO_IN_OUT = "Se debe indicar el estado del carro (Ingresado o Retirado).";
 	
 	private Integer tipoVehiculo;
 	private String placa;
@@ -40,9 +39,6 @@ public class RegistroParqueo {
 		
 		// Validar fechaHoraIngreso
 		ValidadorArgumento.validarObligatorio(fechaHoraIngreso, OBLIGATORIO_FECHA_INGRESO);
-		
-		// Validar estadoInOut
-		ValidadorArgumento.validarObligatorio(estadoInOut, OBLIGATORIO_ESTADO_IN_OUT);
 		
 		this.tipoVehiculo = tipoVehiculo;
 		this.placa = placa;
