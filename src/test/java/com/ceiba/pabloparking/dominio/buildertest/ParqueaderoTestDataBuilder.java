@@ -1,6 +1,7 @@
 package com.ceiba.pabloparking.dominio.buildertest;
 
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 import com.ceiba.pabloparking.dominio.EstadoVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
@@ -14,18 +15,19 @@ public class ParqueaderoTestDataBuilder {
 	private static final Integer CILINDRAJE = 300;
 	
 	// Especificar indicando año, mes, día, horas, minutos, segundos y milisegundos
-	private static final DateTime FECHAHORAINGRESO = new DateTime(2019, 5, 4, 11, 30, 0, 0);
+	private static final LocalDateTime FECHAHORAINGRESO = LocalDateTime.of(2019, Month.JUNE, 4, 11, 23, 1);
 	
 	// Especificar indicando año, mes, día, horas, minutos, segundos y milisegundos
-	private static final DateTime FECHAHORASALIDA = new DateTime(2019, 5, 5, 13, 10, 0, 0);
+	private static final LocalDateTime FECHAHORASALIDA = LocalDateTime.of(2019, Month.JUNE, 5, 13, 30, 40);
+	
 	private static final Double VALORPARQUEO = 6000d;
 	private static final Integer ESTADOINOUT = EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado();
 	
 	private Integer tipoVehiculo;
 	private String placa;
 	private Integer cilindraje;
-	private DateTime fechaHoraIngreso;
-	private DateTime fechaHoraSalida;
+	private LocalDateTime fechaHoraIngreso;
+	private LocalDateTime fechaHoraSalida;
 	private Double valorParqueo;
 	private Integer estadoInOut;
 	
@@ -54,12 +56,12 @@ public class ParqueaderoTestDataBuilder {
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withFechaHoraIngreso(DateTime fechaHoraIngreso) {
+	public ParqueaderoTestDataBuilder withFechaHoraIngreso(LocalDateTime fechaHoraIngreso) {
 		this.fechaHoraIngreso = fechaHoraIngreso;
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withFechaHoraSalida(DateTime fechaHoraSalida) {
+	public ParqueaderoTestDataBuilder withFechaHoraSalida(LocalDateTime fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 		return this;
 	}

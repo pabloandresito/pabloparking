@@ -1,19 +1,19 @@
 package com.ceiba.pabloparking.dominio;
 
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
 
 public class RegistroParqueo {
 	
 	private Integer tipoVehiculo;
 	private String placa;
 	private Integer cilindraje;
-	private DateTime fechaHoraIngreso;
-	private DateTime fechaHoraSalida;
+	private LocalDateTime fechaHoraIngreso;
+	private LocalDateTime fechaHoraSalida;
 	private Double valorParqueo;
 	private Integer estadoInOut;
 	
-	public RegistroParqueo(Integer tipoVehiculo, String placa, Integer cilindraje, DateTime fechaHoraIngreso,
-			DateTime fechaHoraSalida, Double valorParqueo, Integer estadoInOut) {
+	public RegistroParqueo(Integer tipoVehiculo, String placa, Integer cilindraje, LocalDateTime fechaHoraIngreso,
+			LocalDateTime fechaHoraSalida, Double valorParqueo, Integer estadoInOut) {
 		super();
 		this.tipoVehiculo = tipoVehiculo;
 		this.placa = placa;
@@ -50,20 +50,20 @@ public class RegistroParqueo {
 	public void setCilindraje(Integer cilindraje) {
 		this.cilindraje = cilindraje;
 	}
-	
-	public DateTime getFechaHoraIngreso() {
+
+	public LocalDateTime getFechaHoraIngreso() {
 		return fechaHoraIngreso;
 	}
 
-	public void setFechaHoraIngreso(DateTime fechaHoraIngreso) {
+	public void setFechaHoraIngreso(LocalDateTime fechaHoraIngreso) {
 		this.fechaHoraIngreso = fechaHoraIngreso;
 	}
 
-	public DateTime getFechaHoraSalida() {
+	public LocalDateTime getFechaHoraSalida() {
 		return fechaHoraSalida;
 	}
 
-	public void setFechaHoraSalida(DateTime fechaHoraSalida) {
+	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 

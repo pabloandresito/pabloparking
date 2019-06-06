@@ -2,7 +2,9 @@ package com.ceiba.pabloparking.dominio.unitaria;
 
 import static org.junit.Assert.assertEquals;
 
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
+import java.time.Month;
+
 import org.junit.Test;
 
 import com.ceiba.pabloparking.dominio.EstadoVehiculo;
@@ -17,10 +19,10 @@ public class ParqueaderoTest {
 	private static final Integer CILINDRAJE = 200;
 	
 	// Especificar indicando año, mes, día, horas, minutos, segundos y milisegundos
-	private static final DateTime FECHAHORAINGRESO = new DateTime(2019, 6, 4, 13, 30, 0, 0);
+	private static final LocalDateTime FECHAHORAINGRESO = LocalDateTime.of(2019, Month.JUNE, 4, 13, 30, 0);
 	
 	// Especificar indicando año, mes, día, horas, minutos, segundos y milisegundos
-	private static final DateTime FECHAHORASALIDA = new DateTime(2019, 6, 4, 14, 12, 0, 0);
+	private static final LocalDateTime FECHAHORASALIDA = LocalDateTime.of(2019, Month.JUNE, 4, 14, 12, 41);
 	private static final Double VALORPARQUEO = 5000d;
 	private static final Integer ESTADOINOUT = EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado();
 	
