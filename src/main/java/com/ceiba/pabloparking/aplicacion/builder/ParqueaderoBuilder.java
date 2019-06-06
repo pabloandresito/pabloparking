@@ -10,9 +10,10 @@ public class ParqueaderoBuilder {
 		RegistroParqueo parqueadero = null;
 		
 		if(parqueaderoEntidad != null) {
-			parqueadero = new RegistroParqueo(parqueaderoEntidad.getTipoVehiculo(), parqueaderoEntidad.getPlaca(), parqueaderoEntidad.getCilindraje(), 
-											parqueaderoEntidad.getFechaHoraIngreso(), parqueaderoEntidad.getFechaHoraSalida(), parqueaderoEntidad.getValorParqueo(), 
-											parqueaderoEntidad.getEstadoInOut());
+			parqueadero = new RegistroParqueo(parqueaderoEntidad.getTipoVehiculo(), 
+												parqueaderoEntidad.getPlaca(), 
+												parqueaderoEntidad.getCilindraje(), 
+												parqueaderoEntidad.getFechaHoraIngreso());
 		}
 		
 		return parqueadero;

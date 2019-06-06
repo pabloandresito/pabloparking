@@ -1,5 +1,8 @@
 package com.ceiba.pabloparking;
 
+import java.time.LocalDateTime;
+import java.time.Month;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -9,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 
 import com.ceiba.pabloparking.aplicacion.builder.MotoBuilder;
 import com.ceiba.pabloparking.aplicacion.builder.ParqueaderoBuilder;
-import com.ceiba.pabloparking.dominio.EstadoVehiculo;
 import com.ceiba.pabloparking.dominio.Moto;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
@@ -61,8 +63,11 @@ public class PabloparkingApplication {
 	public CommandLineRunner demoParqueadero(ParqueaderoDao parqueaderoDao) {
 		return (args) -> {
 			// save a couple of customers
-			parqueaderoDao.save(ParqueaderoBuilder.convertirAEntity(new RegistroParqueo(TipoVehiculo.CARRO.getIdTipoVehiculo(), "MSP777", 200, null, null, 5000d, EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado())));
-			//parqueaderoDao.save(ParqueaderoBuilder.convertirAEntity(new Parqueadero(TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSP888", null, (new DateTime()), (new DateTime()), 5000d, EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado(), 1l)));
+			LocalDateTime fechaHoraIngreso = LocalDateTime.of(2019, Month.MAY, 4, 11, 23, 1);
+			parqueaderoDao.save(ParqueaderoBuilder.convertirAEntity(new RegistroParqueo(TipoVehiculo.CARRO.getIdTipoVehiculo(), "CSP777", null, fechaHoraIngreso)));
+			
+			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 12, 4, 34, 15);
+			parqueaderoDao.save(ParqueaderoBuilder.convertirAEntity(new RegistroParqueo(TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSQ999", 600, fechaHoraIngreso)));
 			
 			// fetch all customers
 			log.info("Motos found with findAll():");
