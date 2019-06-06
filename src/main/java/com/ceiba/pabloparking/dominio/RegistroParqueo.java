@@ -12,6 +12,7 @@ public class RegistroParqueo {
 	private static final String POSITIVO_CILINDRAJE_MOTO = "Se debe ingresar un cilindraje mayor que cero.";
 	private static final String OBLIGATORIO_FECHA_INGRESO = "Se debe llenar la fecha de ingreso.";
 	
+	private Long id;
 	private Integer tipoVehiculo;
 	private String placa;
 	private Integer cilindraje;
@@ -20,6 +21,37 @@ public class RegistroParqueo {
 	private Double valorParqueo;
 	private Integer estadoInOut;
 	
+	public RegistroParqueo(Long id, Integer tipoVehiculo, String placa, Integer cilindraje, LocalDateTime fechaHoraIngreso) {
+		
+		// Validar tipoVehiculo
+		ValidadorArgumento.validarObligatorio(tipoVehiculo, OBLIGATORIO_TIPO_VEHICULO);
+		
+		// Validar placa
+		ValidadorArgumento.validarNoVacioString(placa, NO_VACIO_PLACA);
+		
+		// Validar cilindraje
+		if(tipoVehiculo == TipoVehiculo.MOTO.getIdTipoVehiculo()) {
+			ValidadorArgumento.validarObligatorio(cilindraje, OBLIGATORIO_CILINDRAJE_MOTO);
+			ValidadorArgumento.validarPositivo(new Double(cilindraje), POSITIVO_CILINDRAJE_MOTO);
+			
+		} else { // Si el Vehiculo no es una moto entonces nos aseguramos que el cilindraje este null
+			cilindraje = null;
+		}
+		
+		// Validar fechaHoraIngreso
+		ValidadorArgumento.validarObligatorio(fechaHoraIngreso, OBLIGATORIO_FECHA_INGRESO);
+
+		this.id = id;
+		this.tipoVehiculo = tipoVehiculo;
+		this.placa = placa;
+		this.cilindraje = cilindraje;
+		this.fechaHoraIngreso = fechaHoraIngreso;
+		this.fechaHoraSalida = null;
+		this.valorParqueo = null;
+		this.estadoInOut = EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado();
+	}
+	
+	// TODO probles - Revisar que hacemos con el ID. (El id debe ir en el constructor ?)
 	public RegistroParqueo(Integer tipoVehiculo, String placa, Integer cilindraje, LocalDateTime fechaHoraIngreso) {
 		
 		// Validar tipoVehiculo
@@ -39,7 +71,7 @@ public class RegistroParqueo {
 		
 		// Validar fechaHoraIngreso
 		ValidadorArgumento.validarObligatorio(fechaHoraIngreso, OBLIGATORIO_FECHA_INGRESO);
-		
+
 		this.tipoVehiculo = tipoVehiculo;
 		this.placa = placa;
 		this.cilindraje = cilindraje;
@@ -47,6 +79,14 @@ public class RegistroParqueo {
 		this.fechaHoraSalida = null;
 		this.valorParqueo = null;
 		this.estadoInOut = EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado();
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Integer getTipoVehiculo() {
