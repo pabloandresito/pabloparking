@@ -19,9 +19,9 @@ public interface RepositorioRegistroParqueo {
     
     /**
      * Permite eliminar un registroParqueo
-     * @param id
+     * @param idRegistroParqueo
      */
-    void eliminar(Long id);
+    void eliminar(Long idRegistroParqueo);
    
     /**
      * Permite validar si existe un carro en el parqueadero con una placa especifica y que este ingresado (No Retirado)

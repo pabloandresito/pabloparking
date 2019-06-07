@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "Parqueadero")
-public class ParqueaderoEntidad {
+@Entity(name = "RegistroParqueo")
+public class RegistroParqueoEntidad {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +36,7 @@ public class ParqueaderoEntidad {
 	@Column(nullable = false)
 	private Integer estadoInOut;
 	
-	public ParqueaderoEntidad() {
+	public RegistroParqueoEntidad() {
 		super();
 	}
 

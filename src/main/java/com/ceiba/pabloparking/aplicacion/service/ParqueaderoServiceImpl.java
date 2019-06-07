@@ -8,35 +8,35 @@ import org.springframework.stereotype.Service;
 
 import com.ceiba.pabloparking.aplicacion.builder.ParqueaderoBuilder;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
-import com.ceiba.pabloparking.infraestructura.persistencia.dao.ParqueaderoDao;
-import com.ceiba.pabloparking.infraestructura.persistencia.entidad.ParqueaderoEntidad;
+import com.ceiba.pabloparking.infraestructura.persistencia.dao.ConexionDBRegistroParqueo;
+import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
 @Service
 public class ParqueaderoServiceImpl implements ParqueaderoService {
 	
 	@Autowired
-	ParqueaderoDao parqueaderoDao;
+	ConexionDBRegistroParqueo conexionDBRegistroParqueo;
 
 	@Override
 	public List<RegistroParqueo> consultarCarros() {
-		Iterable<ParqueaderoEntidad> listCarrosParqueadosEntidad =  parqueaderoDao.findAll();
+		Iterable<RegistroParqueoEntidad> listRegistroParqueoCarrosEntidad = conexionDBRegistroParqueo.findAll();
 		
-		List<RegistroParqueo> listCarrosParqueados = new ArrayList<RegistroParqueo>();
-		for (ParqueaderoEntidad parqueaderoEntidad : listCarrosParqueadosEntidad) {
-			listCarrosParqueados.add(ParqueaderoBuilder.convertirADominio(parqueaderoEntidad));
+		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
+		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoCarrosEntidad) {
+			listRegistroParqueo.add(ParqueaderoBuilder.convertirADominio(registroParqueoEntidad));
 		}
-		return listCarrosParqueados;
+		return listRegistroParqueo;
 	}
 
 	@Override
 	public List<RegistroParqueo> consultarMotos() {
-		Iterable<ParqueaderoEntidad> listMotosParqueadasEntidad =  parqueaderoDao.findAll();
+		Iterable<RegistroParqueoEntidad> listRegistroParqueoMotosEntidad = conexionDBRegistroParqueo.findAll();
 		
-		List<RegistroParqueo> listMotosParqueadas = new ArrayList<RegistroParqueo>();
-		for (ParqueaderoEntidad parqueaderoEntidad : listMotosParqueadasEntidad) {
-			listMotosParqueadas.add(ParqueaderoBuilder.convertirADominio(parqueaderoEntidad));
+		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
+		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoMotosEntidad) {
+			listRegistroParqueo.add(ParqueaderoBuilder.convertirADominio(registroParqueoEntidad));
 		}
-		return listMotosParqueadas;
+		return listRegistroParqueo;
 	}
 
 }

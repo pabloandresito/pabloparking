@@ -15,10 +15,10 @@ import com.ceiba.pabloparking.aplicacion.builder.ParqueaderoBuilder;
 import com.ceiba.pabloparking.dominio.Moto;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
+import com.ceiba.pabloparking.infraestructura.persistencia.dao.ConexionDBRegistroParqueo;
 import com.ceiba.pabloparking.infraestructura.persistencia.dao.MotoDao;
-import com.ceiba.pabloparking.infraestructura.persistencia.dao.ParqueaderoDao;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.MotoEntidad;
-import com.ceiba.pabloparking.infraestructura.persistencia.entidad.ParqueaderoEntidad;
+import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
 @SpringBootApplication
 public class PabloparkingApplication {
@@ -60,19 +60,19 @@ public class PabloparkingApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demoParqueadero(ParqueaderoDao parqueaderoDao) {
+	public CommandLineRunner demoParqueadero(ConexionDBRegistroParqueo conexionDBRegistroParqueo) {
 		return (args) -> {
 			// save a couple of customers
 			LocalDateTime fechaHoraIngreso = LocalDateTime.of(2019, Month.MAY, 4, 11, 23, 1);
-			parqueaderoDao.save(ParqueaderoBuilder.convertirAEntity(new RegistroParqueo(TipoVehiculo.CARRO.getIdTipoVehiculo(), "CSP777", null, fechaHoraIngreso)));
+			conexionDBRegistroParqueo.save(ParqueaderoBuilder.convertirAEntity(new RegistroParqueo(TipoVehiculo.CARRO.getIdTipoVehiculo(), "CSP777", null, fechaHoraIngreso)));
 			
 			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 12, 4, 34, 15);
-			parqueaderoDao.save(ParqueaderoBuilder.convertirAEntity(new RegistroParqueo(TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSQ999", 600, fechaHoraIngreso)));
+			conexionDBRegistroParqueo.save(ParqueaderoBuilder.convertirAEntity(new RegistroParqueo(TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSQ999", 600, fechaHoraIngreso)));
 			
 			// fetch all customers
 			log.info("Motos found with findAll():");
 			log.info("-------------------------------");
-			for (ParqueaderoEntidad parqueaderoEntidad : parqueaderoDao.findAll()) {
+			for (RegistroParqueoEntidad parqueaderoEntidad : conexionDBRegistroParqueo.findAll()) {
 				log.info(parqueaderoEntidad.getPlaca());
 			}
 		};

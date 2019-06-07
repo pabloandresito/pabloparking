@@ -1,39 +1,39 @@
 package com.ceiba.pabloparking.aplicacion.builder;
 
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
-import com.ceiba.pabloparking.infraestructura.persistencia.entidad.ParqueaderoEntidad;
+import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
 public class ParqueaderoBuilder {
 
-	public static RegistroParqueo convertirADominio(ParqueaderoEntidad parqueaderoEntidad) {
+	public static RegistroParqueo convertirADominio(RegistroParqueoEntidad parqueaderoEntidad) {
 		
-		RegistroParqueo parqueadero = null;
+		RegistroParqueo registroParqueo = null;
 		
 		if(parqueaderoEntidad != null) {
-			parqueadero = new RegistroParqueo(parqueaderoEntidad.getId(),
+			registroParqueo = new RegistroParqueo(parqueaderoEntidad.getId(),
 												parqueaderoEntidad.getTipoVehiculo(), 
 												parqueaderoEntidad.getPlaca(), 
 												parqueaderoEntidad.getCilindraje(), 
 												parqueaderoEntidad.getFechaHoraIngreso());
 		}
 		
-		return parqueadero;
+		return registroParqueo;
 	}
 	
-	public static ParqueaderoEntidad convertirAEntity(RegistroParqueo parqueadero) {
+	public static RegistroParqueoEntidad convertirAEntity(RegistroParqueo registroParqueo) {
 		
-		ParqueaderoEntidad parqueaderoEntidad = new ParqueaderoEntidad();
+		RegistroParqueoEntidad registroParqueoEntidad = new RegistroParqueoEntidad();
 		
-		parqueaderoEntidad.setId(parqueadero.getId());
-		parqueaderoEntidad.setTipoVehiculo(parqueadero.getTipoVehiculo());
-		parqueaderoEntidad.setPlaca(parqueadero.getPlaca());
-		parqueaderoEntidad.setCilindraje(parqueadero.getCilindraje());
-		parqueaderoEntidad.setFechaHoraIngreso(parqueadero.getFechaHoraIngreso());
-		parqueaderoEntidad.setFechaHoraSalida(parqueadero.getFechaHoraSalida()); 
-		parqueaderoEntidad.setValorParqueo(parqueadero.getValorParqueo()); 
-		parqueaderoEntidad.setEstadoInOut(parqueadero.getEstadoInOut());
+		registroParqueoEntidad.setId(registroParqueo.getId());
+		registroParqueoEntidad.setTipoVehiculo(registroParqueo.getTipoVehiculo());
+		registroParqueoEntidad.setPlaca(registroParqueo.getPlaca());
+		registroParqueoEntidad.setCilindraje(registroParqueo.getCilindraje());
+		registroParqueoEntidad.setFechaHoraIngreso(registroParqueo.getFechaHoraIngreso());
+		registroParqueoEntidad.setFechaHoraSalida(registroParqueo.getFechaHoraSalida()); 
+		registroParqueoEntidad.setValorParqueo(registroParqueo.getValorParqueo()); 
+		registroParqueoEntidad.setEstadoInOut(registroParqueo.getEstadoInOut());
 		
-		return parqueaderoEntidad;
+		return registroParqueoEntidad;
 	}
 
 }

@@ -6,7 +6,7 @@ import java.time.Month;
 import com.ceiba.pabloparking.dominio.EstadoVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
-import com.ceiba.pabloparking.infraestructura.persistencia.entidad.ParqueaderoEntidad;
+import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
 public class ParqueaderoTestDataBuilder {
 	
@@ -80,18 +80,18 @@ public class ParqueaderoTestDataBuilder {
 		return new RegistroParqueo(this.tipoVehiculo, this.placa, this.cilindraje, this.fechaHoraIngreso);
 	}
 	
-	public ParqueaderoEntidad buildEntity() {
+	public RegistroParqueoEntidad buildEntity() {
 		
-		ParqueaderoEntidad parqueaderoEntidad = new ParqueaderoEntidad();
+		RegistroParqueoEntidad registroParqueoEntidad = new RegistroParqueoEntidad();
 		
-		parqueaderoEntidad.setTipoVehiculo(this.tipoVehiculo);
-		parqueaderoEntidad.setPlaca(this.placa);
-		parqueaderoEntidad.setCilindraje(this.cilindraje);
-		parqueaderoEntidad.setFechaHoraIngreso(this.fechaHoraIngreso);
-		parqueaderoEntidad.setFechaHoraSalida(this.fechaHoraSalida); 
-		parqueaderoEntidad.setValorParqueo(this.valorParqueo); 
-		parqueaderoEntidad.setEstadoInOut(this.estadoInOut);
+		registroParqueoEntidad.setTipoVehiculo(this.tipoVehiculo);
+		registroParqueoEntidad.setPlaca(this.placa);
+		registroParqueoEntidad.setCilindraje(this.cilindraje);
+		registroParqueoEntidad.setFechaHoraIngreso(this.fechaHoraIngreso);
+		registroParqueoEntidad.setFechaHoraSalida(this.fechaHoraSalida); 
+		registroParqueoEntidad.setValorParqueo(this.valorParqueo); 
+		registroParqueoEntidad.setEstadoInOut(this.estadoInOut);
 		
-		return parqueaderoEntidad;
+		return registroParqueoEntidad;
 	}
 }
