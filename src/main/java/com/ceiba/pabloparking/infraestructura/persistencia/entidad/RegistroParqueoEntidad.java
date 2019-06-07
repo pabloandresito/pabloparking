@@ -1,15 +1,15 @@
 package com.ceiba.pabloparking.infraestructura.persistencia.entidad;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.joda.time.DateTime;
-
-@Entity(name = "Parqueadero")
-public class ParqueaderoEntidad {
+@Entity(name = "RegistroParqueo")
+public class RegistroParqueoEntidad {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,11 +24,11 @@ public class ParqueaderoEntidad {
 	@Column
 	private Integer cilindraje;
 	
-	@Column
-	private DateTime fechaHoraIngreso;
+	@Column(nullable = false)
+	private LocalDateTime fechaHoraIngreso;
 	
 	@Column
-	private DateTime fechaHoraSalida;
+	private LocalDateTime fechaHoraSalida;
 	
 	@Column
 	private Double valorParqueo;
@@ -36,10 +36,7 @@ public class ParqueaderoEntidad {
 	@Column(nullable = false)
 	private Integer estadoInOut;
 	
-	@Column
-	private Long idVigilante;
-
-	public ParqueaderoEntidad() {
+	public RegistroParqueoEntidad() {
 		super();
 	}
 
@@ -75,19 +72,19 @@ public class ParqueaderoEntidad {
 		this.cilindraje = cilindraje;
 	}
 
-	public DateTime getFechaHoraIngreso() {
+	public LocalDateTime getFechaHoraIngreso() {
 		return fechaHoraIngreso;
 	}
 
-	public void setFechaHoraIngreso(DateTime fechaHoraIngreso) {
+	public void setFechaHoraIngreso(LocalDateTime fechaHoraIngreso) {
 		this.fechaHoraIngreso = fechaHoraIngreso;
 	}
 
-	public DateTime getFechaHoraSalida() {
+	public LocalDateTime getFechaHoraSalida() {
 		return fechaHoraSalida;
 	}
 
-	public void setFechaHoraSalida(DateTime fechaHoraSalida) {
+	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
@@ -106,13 +103,4 @@ public class ParqueaderoEntidad {
 	public void setEstadoInOut(Integer estadoInOut) {
 		this.estadoInOut = estadoInOut;
 	}
-
-	public Long getIdVigilante() {
-		return idVigilante;
-	}
-
-	public void setIdVigilante(Long idVigilante) {
-		this.idVigilante = idVigilante;
-	}
-
 }
