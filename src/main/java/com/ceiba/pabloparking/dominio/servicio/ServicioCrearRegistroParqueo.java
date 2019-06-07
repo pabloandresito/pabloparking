@@ -1,11 +1,13 @@
 package com.ceiba.pabloparking.dominio.servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.pabloparking.dominio.repositorio.RepositorioRegistroParqueo;
 
+@Service
 public class ServicioCrearRegistroParqueo {
 
 	private static final String VEHICULO_YA_INGRESADO_AL_PARQUEADERO = "El vehiculo ya se encuentra ingresado en el parqueadero";
