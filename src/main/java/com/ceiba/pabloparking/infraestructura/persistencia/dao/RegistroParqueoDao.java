@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ceiba.pabloparking.aplicacion.builder.ParqueaderoBuilder;
+import com.ceiba.pabloparking.aplicacion.fabrica.FabricaRegistroParqueo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.repositorio.RepositorioRegistroParqueo;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
@@ -17,15 +17,18 @@ public class RegistroParqueoDao implements RepositorioRegistroParqueo {
 	@Autowired
 	private ConexionDBRegistroParqueo conexionDBRegistroParqueo;
 	
+	@Autowired
+	private FabricaRegistroParqueo fabricaRegistroParqueo;
+	
 	@Override
 	public Long crear(RegistroParqueo registroParqueo) {
-		RegistroParqueoEntidad registroParqueoEntidadResultado = conexionDBRegistroParqueo.save(ParqueaderoBuilder.convertirAEntity(registroParqueo));
+		RegistroParqueoEntidad registroParqueoEntidadResultado = conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(registroParqueo));
 		return registroParqueoEntidadResultado != null ? registroParqueoEntidadResultado.getId() : null;
 	}
 
 	@Override
 	public void actualizar(RegistroParqueo registroParqueo) {
-		conexionDBRegistroParqueo.save(ParqueaderoBuilder.convertirAEntity(registroParqueo));
+		conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(registroParqueo));
 	}
 
 	@Override
@@ -45,7 +48,7 @@ public class RegistroParqueoDao implements RepositorioRegistroParqueo {
 		
 		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
 		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoMotosEntidad) {
-			listRegistroParqueo.add(ParqueaderoBuilder.convertirADominio(registroParqueoEntidad));
+			listRegistroParqueo.add(fabricaRegistroParqueo.convertirEntityADominio(registroParqueoEntidad));
 		}
 		return listRegistroParqueo;
 	}

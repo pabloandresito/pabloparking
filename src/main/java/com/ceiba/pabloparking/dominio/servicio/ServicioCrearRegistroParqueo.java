@@ -17,11 +17,11 @@ public class ServicioCrearRegistroParqueo {
 
     public Long ejecutar(RegistroParqueo registroParqueo) {
     	validarExistenciaPrevia(registroParqueo);
-        return this.repositorioRegistroParqueo.crear(registroParqueo);
+        return repositorioRegistroParqueo.crear(registroParqueo);
     }
 
 	private void validarExistenciaPrevia(RegistroParqueo registroParqueo) {
-		boolean existe = this.repositorioRegistroParqueo.existeIngresado(registroParqueo.getPlaca());
+		boolean existe = repositorioRegistroParqueo.existeIngresado(registroParqueo.getPlaca());
     	if(existe) {
     		throw new ExcepcionDuplicidad(VEHICULO_YA_INGRESADO_AL_PARQUEADERO);
     	}

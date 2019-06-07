@@ -18,7 +18,7 @@ public class ManejadorCrearRegistroParqueo {
 	private ServicioCrearRegistroParqueo servicioCrearRegistroParqueo;
 
 	public Long ejecutar(ComandoRegistroParqueo comandoRegistroParqueo) {
-		RegistroParqueo registroParqueo = this.fabricaRegistroParqueo.crear(comandoRegistroParqueo);
+		RegistroParqueo registroParqueo = fabricaRegistroParqueo.convertirComandoADominio(comandoRegistroParqueo);
 		return servicioCrearRegistroParqueo.ejecutar(registroParqueo);
 	}
 

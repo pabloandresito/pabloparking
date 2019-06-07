@@ -20,7 +20,7 @@ public class ManejadorVigilanteRegistrarVehiculo {
 	private ServicioVigilanteRegistrarVehiculo servicioVigilanteRegistrarVehiculo;
 
 	public Long ejecutar(ComandoRegistroParqueo comandoRegistroParqueo) {
-		RegistroParqueo registroParqueo = this.fabricaRegistroParqueo.crear(comandoRegistroParqueo);
+		RegistroParqueo registroParqueo = fabricaRegistroParqueo.convertirComandoADominio(comandoRegistroParqueo);
 		return servicioVigilanteRegistrarVehiculo.ejecutar(registroParqueo);
 	}
 

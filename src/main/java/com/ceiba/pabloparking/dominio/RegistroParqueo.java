@@ -126,7 +126,7 @@ public class RegistroParqueo {
 		return fechaHoraSalida;
 	}
 
-	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
+	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) { // TODO probles - Aqui se debe validar que la fecha final no debe menor a la fecha inicial
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 

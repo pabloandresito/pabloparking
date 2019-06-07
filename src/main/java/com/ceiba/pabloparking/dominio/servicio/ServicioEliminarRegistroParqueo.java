@@ -12,7 +12,7 @@ public class ServicioEliminarRegistroParqueo {
 	private RepositorioRegistroParqueo repositorioRegistroParqueo;
 	
 	public void ejecutar(Long id) {
-        this.repositorioRegistroParqueo.eliminar(id);
+        repositorioRegistroParqueo.eliminar(id);
     }
 
 }

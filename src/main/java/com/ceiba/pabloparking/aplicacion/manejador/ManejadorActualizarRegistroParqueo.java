@@ -18,7 +18,7 @@ public class ManejadorActualizarRegistroParqueo {
 	private ServicioActualizarRegistroParqueo servicioActualizarRegistroParqueo;
 
 	public void ejecutar(ComandoRegistroParqueo comandoRegistroParqueo) {
-		RegistroParqueo registroParqueo = this.fabricaRegistroParqueo.crear(comandoRegistroParqueo);
+		RegistroParqueo registroParqueo = fabricaRegistroParqueo.convertirComandoADominio(comandoRegistroParqueo);
 		servicioActualizarRegistroParqueo.ejecutar(registroParqueo);
 	}
 

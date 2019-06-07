@@ -13,7 +13,7 @@ public class ServicioActualizarRegistroParqueo {
 	private RepositorioRegistroParqueo repositorioRegistroParqueo;
 
 	public void ejecutar(RegistroParqueo registroParqueo) {
-        this.repositorioRegistroParqueo.actualizar(registroParqueo);
+        repositorioRegistroParqueo.actualizar(registroParqueo);
     }
 
 }
