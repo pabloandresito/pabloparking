@@ -1,22 +1,26 @@
-package com.ceiba.pabloparking.dominio;
+package com.ceiba.pabloparking.aplicacion.comando;
 
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
 
-public class Parqueadero {
-	// TODO probles - Cambiar nombre de la clase
+public class ComandoRegistroParqueo {
 	
+	private Long id;
 	private Integer tipoVehiculo;
 	private String placa;
 	private Integer cilindraje;
-	private DateTime fechaHoraIngreso;
-	private DateTime fechaHoraSalida;
+	private LocalDateTime fechaHoraIngreso;
+	private LocalDateTime fechaHoraSalida;
 	private Double valorParqueo;
 	private Integer estadoInOut;
-	private Long idVigilante;
-
-	public Parqueadero(Integer tipoVehiculo, String placa, Integer cilindraje, DateTime fechaHoraIngreso,
-			DateTime fechaHoraSalida, Double valorParqueo, Integer estadoInOut, Long idVigilante) {
+	
+	public ComandoRegistroParqueo() {
 		super();
+	}
+
+	public ComandoRegistroParqueo(Long id, Integer tipoVehiculo, String placa, Integer cilindraje,
+			LocalDateTime fechaHoraIngreso, LocalDateTime fechaHoraSalida, Double valorParqueo, Integer estadoInOut) {
+		super();
+		this.id = id;
 		this.tipoVehiculo = tipoVehiculo;
 		this.placa = placa;
 		this.cilindraje = cilindraje;
@@ -24,11 +28,15 @@ public class Parqueadero {
 		this.fechaHoraSalida = fechaHoraSalida;
 		this.valorParqueo = valorParqueo;
 		this.estadoInOut = estadoInOut;
-		this.idVigilante = idVigilante;
-		// TODO probles - Se debe validar atributos por ejemplo las fechas y tener atributos consistentes
 	}
 
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Integer getTipoVehiculo() {
 		return tipoVehiculo;
@@ -44,7 +52,7 @@ public class Parqueadero {
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
-	} // TODO probles - No es necesario tener eeste set debido a que debemos representar la realidad 
+	}
 
 	public Integer getCilindraje() {
 		return cilindraje;
@@ -53,20 +61,20 @@ public class Parqueadero {
 	public void setCilindraje(Integer cilindraje) {
 		this.cilindraje = cilindraje;
 	}
-	
-	public DateTime getFechaHoraIngreso() {
+
+	public LocalDateTime getFechaHoraIngreso() {
 		return fechaHoraIngreso;
 	}
 
-	public void setFechaHoraIngreso(DateTime fechaHoraIngreso) {
+	public void setFechaHoraIngreso(LocalDateTime fechaHoraIngreso) {
 		this.fechaHoraIngreso = fechaHoraIngreso;
 	}
 
-	public DateTime getFechaHoraSalida() {
+	public LocalDateTime getFechaHoraSalida() {
 		return fechaHoraSalida;
 	}
 
-	public void setFechaHoraSalida(DateTime fechaHoraSalida) {
+	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
@@ -84,13 +92,5 @@ public class Parqueadero {
 
 	public void setEstadoInOut(Integer estadoInOut) {
 		this.estadoInOut = estadoInOut;
-	}
-
-	public Long getIdVigilante() {
-		return idVigilante;
-	}
-
-	public void setIdVigilante(Long idVigilante) {
-		this.idVigilante = idVigilante;
 	}
 }

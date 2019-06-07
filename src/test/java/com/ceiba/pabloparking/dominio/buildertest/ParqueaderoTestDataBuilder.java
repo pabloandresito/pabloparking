@@ -1,11 +1,12 @@
 package com.ceiba.pabloparking.dominio.buildertest;
 
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 import com.ceiba.pabloparking.dominio.EstadoVehiculo;
-import com.ceiba.pabloparking.dominio.Parqueadero;
+import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
-import com.ceiba.pabloparking.infraestructura.persistencia.entidad.ParqueaderoEntidad;
+import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
 public class ParqueaderoTestDataBuilder {
 	
@@ -14,22 +15,21 @@ public class ParqueaderoTestDataBuilder {
 	private static final Integer CILINDRAJE = 300;
 	
 	// Especificar indicando año, mes, día, horas, minutos, segundos y milisegundos
-	private static final DateTime FECHAHORAINGRESO = new DateTime(2019, 5, 4, 11, 30, 0, 0);
+	private static final LocalDateTime FECHAHORAINGRESO = LocalDateTime.of(2019, Month.JUNE, 4, 11, 23, 1);
 	
 	// Especificar indicando año, mes, día, horas, minutos, segundos y milisegundos
-	private static final DateTime FECHAHORASALIDA = new DateTime(2019, 5, 5, 13, 10, 0, 0);
+	private static final LocalDateTime FECHAHORASALIDA = LocalDateTime.of(2019, Month.JUNE, 5, 13, 30, 40);
+	
 	private static final Double VALORPARQUEO = 6000d;
 	private static final Integer ESTADOINOUT = EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado();
-	private static final Long IDVIGILANTE = 1l;
 	
 	private Integer tipoVehiculo;
 	private String placa;
 	private Integer cilindraje;
-	private DateTime fechaHoraIngreso;
-	private DateTime fechaHoraSalida;
+	private LocalDateTime fechaHoraIngreso;
+	private LocalDateTime fechaHoraSalida;
 	private Double valorParqueo;
 	private Integer estadoInOut;
-	private Long idVigilante;
 	
 	public ParqueaderoTestDataBuilder() {
 		this.tipoVehiculo = TIPOVEHICULO;
@@ -39,7 +39,6 @@ public class ParqueaderoTestDataBuilder {
 		this.fechaHoraSalida = FECHAHORASALIDA;
 		this.valorParqueo = VALORPARQUEO;
 		this.estadoInOut = ESTADOINOUT;
-		this.idVigilante = IDVIGILANTE;	
 	}
 	
 	public ParqueaderoTestDataBuilder withTipoVehiculo(Integer tipoVehiculo) {
@@ -57,12 +56,12 @@ public class ParqueaderoTestDataBuilder {
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withFechaHoraIngreso(DateTime fechaHoraIngreso) {
+	public ParqueaderoTestDataBuilder withFechaHoraIngreso(LocalDateTime fechaHoraIngreso) {
 		this.fechaHoraIngreso = fechaHoraIngreso;
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withFechaHoraSalida(DateTime fechaHoraSalida) {
+	public ParqueaderoTestDataBuilder withFechaHoraSalida(LocalDateTime fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 		return this;
 	}
@@ -77,29 +76,22 @@ public class ParqueaderoTestDataBuilder {
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withIdVigilante(Long idVigilante) {
-		this.idVigilante = idVigilante;
-		return this;
-	}
-
-	public Parqueadero build() {
-		return new Parqueadero(this.tipoVehiculo, this.placa, this.cilindraje, this.fechaHoraIngreso, this.fechaHoraSalida, 
-																			this.valorParqueo, this.estadoInOut, this.idVigilante);
+	public RegistroParqueo build() {
+		return new RegistroParqueo(this.tipoVehiculo, this.placa, this.cilindraje, this.fechaHoraIngreso);
 	}
 	
-	public ParqueaderoEntidad buildEntity() {
+	public RegistroParqueoEntidad buildEntity() {
 		
-		ParqueaderoEntidad parqueaderoEntidad = new ParqueaderoEntidad();
+		RegistroParqueoEntidad registroParqueoEntidad = new RegistroParqueoEntidad();
 		
-		parqueaderoEntidad.setTipoVehiculo(this.tipoVehiculo);
-		parqueaderoEntidad.setPlaca(this.placa);
-		parqueaderoEntidad.setCilindraje(this.cilindraje);
-		parqueaderoEntidad.setFechaHoraIngreso(this.fechaHoraIngreso);
-		parqueaderoEntidad.setFechaHoraSalida(this.fechaHoraSalida); 
-		parqueaderoEntidad.setValorParqueo(this.valorParqueo); 
-		parqueaderoEntidad.setEstadoInOut(this.estadoInOut);
-		parqueaderoEntidad.setIdVigilante(this.idVigilante);
+		registroParqueoEntidad.setTipoVehiculo(this.tipoVehiculo);
+		registroParqueoEntidad.setPlaca(this.placa);
+		registroParqueoEntidad.setCilindraje(this.cilindraje);
+		registroParqueoEntidad.setFechaHoraIngreso(this.fechaHoraIngreso);
+		registroParqueoEntidad.setFechaHoraSalida(this.fechaHoraSalida); 
+		registroParqueoEntidad.setValorParqueo(this.valorParqueo); 
+		registroParqueoEntidad.setEstadoInOut(this.estadoInOut);
 		
-		return parqueaderoEntidad;
+		return registroParqueoEntidad;
 	}
 }
