@@ -24,9 +24,9 @@ public class ParqueaderoController {
 		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarCarros(), HttpStatus.OK);
 	}
 	
-//	@RequestMapping(value = "/list-motos", method = RequestMethod.GET)
-//	public ResponseEntity<List<RegistroParqueo>> listMotos(){
-//		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarMotos(), HttpStatus.OK);
-//	} // TODO probles - Descomentariar y arreglar 
+	@RequestMapping(value = "/list-motos", method = RequestMethod.GET)
+	public ResponseEntity<List<RegistroParqueo>> listMotos(){
+		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarMotos(), HttpStatus.OK);
+	}
 
 }

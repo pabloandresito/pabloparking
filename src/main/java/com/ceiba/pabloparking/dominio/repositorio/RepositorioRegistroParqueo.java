@@ -37,4 +37,10 @@ public interface RepositorioRegistroParqueo {
 	 * @return java.util.List<RegistroParqueo>
 	 */
 	List<RegistroParqueo> consultarCarros();
+
+	/**
+	 * Permite consultar la lista de motos que estan ingresadas al parqueadero
+	 * @return java.util.List<RegistroParqueo>
+	 */
+	List<RegistroParqueo> consultarMotos();
 }

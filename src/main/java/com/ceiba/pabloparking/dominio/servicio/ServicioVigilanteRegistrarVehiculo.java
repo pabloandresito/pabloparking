@@ -33,4 +33,8 @@ private static final String VEHICULO_YA_INGRESADO_AL_PARQUEADERO = "El vehiculo 
 		return repositorioRegistroParqueo.consultarCarros();
 	}
 
+	public List<RegistroParqueo> consultarMotos() {
+		return repositorioRegistroParqueo.consultarMotos();
+	}
+
 }

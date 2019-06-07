@@ -65,6 +65,9 @@ public class PabloparkingApplication {
 			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 12, 4, 34, 15);
 			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSQ999", 600, fechaHoraIngreso)));
 			
+			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 13, 2, 3, 45);
+			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSQ111", 650, fechaHoraIngreso)));
+			
 			// fetch all customers
 			log.info("Motos found with findAll():");
 			log.info("-------------------------------");
