@@ -1,5 +1,7 @@
 package com.ceiba.pabloparking.aplicacion.manejador;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,5 +22,9 @@ public class ManejadorVigilanteRegistrarVehiculo {
 	public Long ejecutar(ComandoRegistroParqueo comandoRegistroParqueo) {
 		RegistroParqueo registroParqueo = this.fabricaRegistroParqueo.crear(comandoRegistroParqueo);
 		return servicioVigilanteRegistrarVehiculo.ejecutar(registroParqueo);
+	}
+
+	public List<RegistroParqueo> consultarCarros() {
+		return servicioVigilanteRegistrarVehiculo.consultarCarros();
 	}
 }

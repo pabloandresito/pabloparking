@@ -9,24 +9,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ceiba.pabloparking.aplicacion.service.ParqueaderoService;
+import com.ceiba.pabloparking.aplicacion.manejador.ManejadorVigilanteRegistrarVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 
 @Controller
-@RequestMapping("/parqueadero")
+@RequestMapping("/parqueadero") // TODO probles - Cambiar el nombre de la petición de "parqueadero" a "registroParqueo" o también puede ser "vigilanteparqueadero"
 public class ParqueaderoController {
 	
 	@Autowired
-    private ParqueaderoService parqueaderoService;
+    private ManejadorVigilanteRegistrarVehiculo manejadorVigilanteRegistrarVehiculo;
 	
 	@RequestMapping(value = "/list-carros", method = RequestMethod.GET)
 	public ResponseEntity<List<RegistroParqueo>> listCarros(){
-		return new ResponseEntity<>(parqueaderoService.consultarCarros(), HttpStatus.OK);
+		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarCarros(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/list-motos", method = RequestMethod.GET)
-	public ResponseEntity<List<RegistroParqueo>> listMotos(){
-		return new ResponseEntity<>(parqueaderoService.consultarMotos(), HttpStatus.OK);
-	}
+//	@RequestMapping(value = "/list-motos", method = RequestMethod.GET)
+//	public ResponseEntity<List<RegistroParqueo>> listMotos(){
+//		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarMotos(), HttpStatus.OK);
+//	} // TODO probles - Descomentariar y arreglar 
 
 }

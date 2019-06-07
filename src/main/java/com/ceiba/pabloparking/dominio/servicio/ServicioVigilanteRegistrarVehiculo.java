@@ -1,5 +1,7 @@
 package com.ceiba.pabloparking.dominio.servicio;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +19,18 @@ private static final String VEHICULO_YA_INGRESADO_AL_PARQUEADERO = "El vehiculo 
 
     public Long ejecutar(RegistroParqueo registroParqueo) {
     	validarExistenciaPrevia(registroParqueo);
-        return this.repositorioRegistroParqueo.crear(registroParqueo);
+        return repositorioRegistroParqueo.crear(registroParqueo);
     }
 
 	private void validarExistenciaPrevia(RegistroParqueo registroParqueo) {
-		boolean existe = this.repositorioRegistroParqueo.existeIngresado(registroParqueo.getPlaca());
+		boolean existe = repositorioRegistroParqueo.existeIngresado(registroParqueo.getPlaca());
     	if(existe) {
     		throw new ExcepcionDuplicidad(VEHICULO_YA_INGRESADO_AL_PARQUEADERO);
     	}
+	}
+
+	public List<RegistroParqueo> consultarCarros() {
+		return repositorioRegistroParqueo.consultarCarros();
 	}
 
 }

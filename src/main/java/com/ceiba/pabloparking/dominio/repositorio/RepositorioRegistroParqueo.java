@@ -1,5 +1,7 @@
 package com.ceiba.pabloparking.dominio.repositorio;
 
+import java.util.List;
+
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 
 public interface RepositorioRegistroParqueo {
@@ -29,4 +31,10 @@ public interface RepositorioRegistroParqueo {
      * @return si existe o no
      */
 	boolean existeIngresado(String placa);
+
+	/**
+	 * Permite consultar la lista de carros que estan ingresados al parqueadero
+	 * @return java.util.List<RegistroParqueo>
+	 */
+	List<RegistroParqueo> consultarCarros();
 }
