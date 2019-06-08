@@ -13,8 +13,8 @@ import com.ceiba.pabloparking.aplicacion.manejador.ManejadorVigilanteRegistrarVe
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 
 @Controller
-@RequestMapping("/parqueadero") // TODO probles - Cambiar el nombre de la petición de "parqueadero" a "registroParqueo" o también puede ser "vigilanteparqueadero"
-public class ParqueaderoController {
+@RequestMapping("/registro-parqueo")
+public class RegistroParqueoController {
 	
 	@Autowired
     private ManejadorVigilanteRegistrarVehiculo manejadorVigilanteRegistrarVehiculo;
