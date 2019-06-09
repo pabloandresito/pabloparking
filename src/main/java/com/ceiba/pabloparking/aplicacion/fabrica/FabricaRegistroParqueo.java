@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.ceiba.pabloparking.aplicacion.comando.ComandoRegistroParqueo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
+import com.ceiba.pabloparking.infraestructura.controller.dto.RegistroParqueoDto;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
 @Component
@@ -18,7 +19,7 @@ public class FabricaRegistroParqueo {
 													comandoRegistroParqueo.getCilindraje(), 
 													comandoRegistroParqueo.getFechaHoraIngreso());
 			
-			// Se complementan los demás atributos que no tenia en cuenta el constructor
+			// Se complementan los demï¿½s atributos que no tenia en cuenta el constructor
 			
 			if(comandoRegistroParqueo.getFechaHoraSalida() != null) {
 				registroParqueo.setFechaHoraSalida(comandoRegistroParqueo.getFechaHoraSalida());
@@ -45,7 +46,7 @@ public class FabricaRegistroParqueo {
 													registroParqueoEntidad.getFechaHoraIngreso());
 		}
 		
-		// Se complementan los demás atributos que no tenia en cuenta el constructor
+		// Se complementan los demï¿½s atributos que no tenia en cuenta el constructor
 
 		if(registroParqueoEntidad.getFechaHoraSalida() != null) {
 			registroParqueo.setFechaHoraSalida(registroParqueoEntidad.getFechaHoraSalida());
@@ -75,5 +76,31 @@ public class FabricaRegistroParqueo {
 		registroParqueoEntidad.setEstadoInOut(registroParqueo.getEstadoInOut());
 		
 		return registroParqueoEntidad;
+	}
+
+	public RegistroParqueo convertirDtoADominio(RegistroParqueoDto registroParqueoDto) {
+		RegistroParqueo registroParqueo = null;
+		if(registroParqueoDto != null) {
+			registroParqueo = new RegistroParqueo(registroParqueoDto.getId(), 
+													registroParqueoDto.getTipoVehiculo(), 
+													registroParqueoDto.getPlaca(), 
+													registroParqueoDto.getCilindraje(), 
+													registroParqueoDto.getFechaHoraIngreso());
+			
+			// Se complementan los demÃ¡s atributos que no tenia en cuenta el constructor
+			
+			if(registroParqueoDto.getFechaHoraSalida() != null) {
+				registroParqueo.setFechaHoraSalida(registroParqueoDto.getFechaHoraSalida());
+			}
+			
+			if(registroParqueoDto.getValorParqueo() != null) {
+				registroParqueo.setValorParqueo(registroParqueoDto.getValorParqueo());
+			}
+			
+			if(registroParqueoDto.getEstadoInOut() != null) {
+				registroParqueo.setEstadoInOut(registroParqueoDto.getEstadoInOut());
+			}
+		}
+		return registroParqueo;
 	}
 }

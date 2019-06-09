@@ -9,6 +9,7 @@ import com.ceiba.pabloparking.aplicacion.comando.ComandoRegistroParqueo;
 import com.ceiba.pabloparking.aplicacion.fabrica.FabricaRegistroParqueo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.servicio.ServicioVigilanteRegistrarVehiculo;
+import com.ceiba.pabloparking.infraestructura.controller.dto.RegistroParqueoDto;
 
 @Component
 public class ManejadorVigilanteRegistrarVehiculo {
@@ -30,5 +31,10 @@ public class ManejadorVigilanteRegistrarVehiculo {
 	
 	public List<RegistroParqueo> consultarMotos() {
 		return servicioVigilanteRegistrarVehiculo.consultarMotos();
+	}
+
+	public void ingresarVehiculo(RegistroParqueoDto registroParqueoDto) {
+		RegistroParqueo registroParqueo = fabricaRegistroParqueo.convertirDtoADominio(registroParqueoDto);
+		servicioVigilanteRegistrarVehiculo.ingresarVehiculo(registroParqueo);
 	}
 }
