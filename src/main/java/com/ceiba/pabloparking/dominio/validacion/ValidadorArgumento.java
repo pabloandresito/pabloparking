@@ -1,5 +1,6 @@
 package com.ceiba.pabloparking.dominio.validacion;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -102,4 +103,20 @@ public class ValidadorArgumento {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
+    
+    public static void validarNoLunesNiDomingoPlacaIniciaConA(String placa, LocalDateTime fechaHoraIngreso, String mensaje) {
+		if(validarPlacaIniciaConA(placa)) {
+			if(fechaHoraIngreso.getDayOfWeek() == DayOfWeek.MONDAY) {
+				// TODO probles - Aqui voy !!!
+			}
+		}
+	}
+
+	public static boolean validarPlacaIniciaConA(String placa) {
+		boolean placaIniciaConA = false;
+		if(StringUtils.isNoneBlank(placa) && StringUtils.startsWithAny(placa, "a", "A")) {
+			placaIniciaConA = true;
+		}
+		return placaIniciaConA;
+	}
 }

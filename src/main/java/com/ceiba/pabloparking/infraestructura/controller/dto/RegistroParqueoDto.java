@@ -6,7 +6,6 @@ public class RegistroParqueoDto {
 	
 	private Long id;
 	
-	// TODO probles - Probar obligatoriedad del atributo en la petición usando @notnull
 	private Integer tipoVehiculo;
 	private String placa;
 	private Integer cilindraje;
