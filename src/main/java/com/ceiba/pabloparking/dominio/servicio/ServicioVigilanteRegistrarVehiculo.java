@@ -36,14 +36,6 @@ public class ServicioVigilanteRegistrarVehiculo {
     	return repositorioRegistroParqueo.consultarVehiculosIngresados();
 	}
 
-	public List<RegistroParqueo> consultarCarros() {
-		return repositorioRegistroParqueo.consultarCarros();
-	}
-
-	public List<RegistroParqueo> consultarMotos() {
-		return repositorioRegistroParqueo.consultarMotos();
-	}
-
 	private void validarExistenciaPrevia(RegistroParqueo registroParqueo) {
 		boolean existe = repositorioRegistroParqueo.existeIngresado(registroParqueo.getPlaca());
     	if(existe) {

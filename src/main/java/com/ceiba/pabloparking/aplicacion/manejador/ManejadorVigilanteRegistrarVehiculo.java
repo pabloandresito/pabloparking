@@ -27,12 +27,4 @@ public class ManejadorVigilanteRegistrarVehiculo {
 	public List<RegistroParqueo> consultarVehiculosIngresados() {
 		return servicioVigilanteRegistrarVehiculo.consultarVehiculosIngresados();
 	}
-
-	public List<RegistroParqueo> consultarCarros() { // TODO probles - Posiblemente eliminar este código
-		return servicioVigilanteRegistrarVehiculo.consultarCarros();
-	}
-	
-	public List<RegistroParqueo> consultarMotos() {
-		return servicioVigilanteRegistrarVehiculo.consultarMotos();
-	}
 }

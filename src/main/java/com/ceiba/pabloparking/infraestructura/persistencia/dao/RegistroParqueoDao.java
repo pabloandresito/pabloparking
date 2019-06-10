@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import com.ceiba.pabloparking.aplicacion.fabrica.FabricaRegistroParqueo;
 import com.ceiba.pabloparking.dominio.EstadoVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
-import com.ceiba.pabloparking.dominio.TipoVehiculo;
 import com.ceiba.pabloparking.dominio.repositorio.RepositorioRegistroParqueo;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
@@ -62,28 +61,6 @@ public class RegistroParqueoDao implements RepositorioRegistroParqueo {
 		
 		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
 		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoEntidad) {
-			listRegistroParqueo.add(fabricaRegistroParqueo.convertirEntityADominio(registroParqueoEntidad));
-		}
-		return listRegistroParqueo;
-	}
-
-	@Override
-	public List<RegistroParqueo> consultarCarros() {
-		List<RegistroParqueoEntidad> listRegistroParqueoMotosEntidad = conexionDBRegistroParqueo.findByTipoVehiculoOrderByIdDesc(TipoVehiculo.CARRO.getIdTipoVehiculo());
-		
-		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
-		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoMotosEntidad) {
-			listRegistroParqueo.add(fabricaRegistroParqueo.convertirEntityADominio(registroParqueoEntidad));
-		}
-		return listRegistroParqueo;
-	}
-	
-	@Override
-	public List<RegistroParqueo> consultarMotos() {
-		List<RegistroParqueoEntidad> listRegistroParqueoMotosEntidad = conexionDBRegistroParqueo.findByTipoVehiculoOrderByIdDesc(TipoVehiculo.MOTO.getIdTipoVehiculo());
-		
-		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
-		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoMotosEntidad) {
 			listRegistroParqueo.add(fabricaRegistroParqueo.convertirEntityADominio(registroParqueoEntidad));
 		}
 		return listRegistroParqueo;
