@@ -1,14 +1,14 @@
 'use strict'
 
-var app = angular.module("RegistroParqueoModule", []);
+var app = angular.module("registroParqueoModule", []);
 
-app.controller("RegistroParqueo", function($scope, $http) {
+app.controller("registroParqueo", function($scope, $http) {
 
     $scope.registroParqueoDto = [];
 
     $scope.textError = "";
 
-    refreshAdviserData();
+    refrescarListaVehiculos();
 
     $scope.ingresar = function() {
 
@@ -52,7 +52,7 @@ app.controller("RegistroParqueo", function($scope, $http) {
     function error(res) {
         var data = res.data;
         var status = res.status;
-        $scope.textError = "Ocurrio un error " + data;
+        $scope.textError = "Ocurrio un error " + data.message;
     }
 
     function limpiarFormulario() {
