@@ -44,7 +44,7 @@ app.controller("registroParqueo", function($scope, $http) {
 
         $http({
             method: "POST",
-            url: '/retirar-parqueo/retirar',
+            url: '/retiro-parqueo/retirar',
             data: {
                 id: $scope.registroParqueoDto.id
             },

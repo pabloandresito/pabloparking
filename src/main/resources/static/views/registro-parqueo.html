@@ -46,6 +46,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
+            	<th scope="col" hidden="true">Id</th>
                 <th scope="col">Placa</th>
                 <th scope="col">Tipo de Vehículo</th>
                 <th scope="col">Cilindraje</th>
@@ -55,6 +56,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="vehiculo in listVehiculosIngresados">
+            	<td hidden="true">{{vehiculo.id}}</td>
                 <th scope="row">{{vehiculo.placa}}</th>
                 <td>{{vehiculo.tipoVehiculo}}</td>
                 <td>{{vehiculo.cilindraje}}</td>
