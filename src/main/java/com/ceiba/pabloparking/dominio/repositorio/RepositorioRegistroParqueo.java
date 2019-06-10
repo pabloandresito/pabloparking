@@ -49,4 +49,12 @@ public interface RepositorioRegistroParqueo {
 	 * @return java.util.List<RegistroParqueo>
 	 */
 	List<RegistroParqueo> consultarMotos();
+	
+	/**
+	 * Permite hacer un count por tipoVehiculo y estadoVehiculoInOut
+	 * @param tipoVehiculo
+	 * @param idEstadoInOut
+	 * @return int - count
+	 */
+	int countByTipoVehiculoAndEstadoInOut(Integer tipoVehiculo, Integer idEstadoInOut);
 }

@@ -81,4 +81,9 @@ public class RegistroParqueoDao implements RepositorioRegistroParqueo {
 		}
 		return listRegistroParqueo;
 	}
+
+	@Override
+	public int countByTipoVehiculoAndEstadoInOut(Integer tipoVehiculo, Integer idEstadoInOut) {
+		return conexionDBRegistroParqueo.countByTipoVehiculoAndEstadoInOut(tipoVehiculo, idEstadoInOut);
+	}
 }

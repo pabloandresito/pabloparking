@@ -13,5 +13,7 @@ public interface ConexionDBRegistroParqueo extends CrudRepository<RegistroParque
 	List<RegistroParqueoEntidad> findByEstadoInOutOrderByIdDesc(Integer idEstadoInOut);
 
 	RegistroParqueoEntidad findByPlacaAndEstadoInOut(String placa, Integer idEstadoInOut);
+	
+	int countByTipoVehiculoAndEstadoInOut(Integer tipoVehiculo, Integer idEstadoInOut);
 
 }
