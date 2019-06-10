@@ -28,6 +28,7 @@ public class ServicioVigilanteRegistrarVehiculo {
 
     public Long ejecutar(RegistroParqueo registroParqueo) {
     	validarExistenciaPrevia(registroParqueo);
+    	validarCapacidadMaximaParqueadero(registroParqueo);
         return repositorioRegistroParqueo.crear(registroParqueo);
     }
     
@@ -41,12 +42,6 @@ public class ServicioVigilanteRegistrarVehiculo {
 
 	public List<RegistroParqueo> consultarMotos() {
 		return repositorioRegistroParqueo.consultarMotos();
-	}
-
-	public void ingresarVehiculo(RegistroParqueo registroParqueo) {
-		validarExistenciaPrevia(registroParqueo);
-		validarCapacidadMaximaParqueadero(registroParqueo);
-		repositorioRegistroParqueo.crear(registroParqueo);
 	}
 
 	private void validarExistenciaPrevia(RegistroParqueo registroParqueo) {

@@ -41,7 +41,7 @@ public class RegistroParqueoController {
 	public ResponseEntity<String> ingresar(@RequestBody RegistroParqueoDto registroParqueoDto){
 		LocalDateTime fechaActual = LocalDateTime.now();
 		registroParqueoDto.setFechaHoraIngreso(fechaActual);
-		manejadorVigilanteRegistrarVehiculo.ingresarVehiculo(registroParqueoDto); // TODO probles - Enviar mensaje de respuesta desde el backend
+		manejadorVigilanteRegistrarVehiculo.ejecutar(registroParqueoDto); // TODO probles - Enviar mensaje de respuesta desde el backend
 		return new ResponseEntity<>("Urra !!!", HttpStatus.OK);
 	}
 
