@@ -8,6 +8,7 @@ public class RegistroParqueo {
 	
 	private static final String OBLIGATORIO_TIPO_VEHICULO = "Se debe ingresar el tipo de vehiculo.";
 	private static final String NO_VACIO_PLACA = "Se debe ingresar la placa del vehiculo.";
+	private static final String PLACA_INICIA_CON_A_NO_LUNES_NI_DOMINGO = "La placa inicia por la letra A, por lo tanto no puede ingresar porque no estÃ¡ en un dia hÃ¡bil.";
 	private static final String OBLIGATORIO_CILINDRAJE_MOTO = "Se debe ingresar el cilindraje de la moto.";
 	private static final String POSITIVO_CILINDRAJE_MOTO = "Se debe ingresar un cilindraje mayor que cero.";
 	private static final String OBLIGATORIO_FECHA_INGRESO = "Se debe llenar la fecha de ingreso.";
@@ -23,11 +24,15 @@ public class RegistroParqueo {
 	
 	public RegistroParqueo(Long id, Integer tipoVehiculo, String placa, Integer cilindraje, LocalDateTime fechaHoraIngreso) {
 		
+		// Validar fechaHoraIngreso
+		ValidadorArgumento.validarObligatorio(fechaHoraIngreso, OBLIGATORIO_FECHA_INGRESO);
+		
 		// Validar tipoVehiculo
 		ValidadorArgumento.validarObligatorio(tipoVehiculo, OBLIGATORIO_TIPO_VEHICULO);
 		
 		// Validar placa
 		ValidadorArgumento.validarNoVacioString(placa, NO_VACIO_PLACA);
+		ValidadorArgumento.validarNoLunesNiDomingoPlacaIniciaConA(placa, fechaHoraIngreso, PLACA_INICIA_CON_A_NO_LUNES_NI_DOMINGO);
 		
 		// Validar cilindraje
 		if(tipoVehiculo == TipoVehiculo.MOTO.getIdTipoVehiculo()) {
@@ -37,9 +42,6 @@ public class RegistroParqueo {
 		} else { // Si el Vehiculo no es una moto entonces nos aseguramos que el cilindraje este null
 			cilindraje = null;
 		}
-		
-		// Validar fechaHoraIngreso
-		ValidadorArgumento.validarObligatorio(fechaHoraIngreso, OBLIGATORIO_FECHA_INGRESO);
 
 		this.id = id;
 		this.tipoVehiculo = tipoVehiculo;
@@ -93,7 +95,7 @@ public class RegistroParqueo {
 		return tipoVehiculo;
 	}
 
-	// A nivel de negocio no se debe poder modificar el tipo de vehiculo y por está razon se quita el método SET
+	// A nivel de negocio no se debe poder modificar el tipo de vehiculo y por estï¿½ razon se quita el mï¿½todo SET
 //	public void setTipoVehiculo(Integer tipoVehiculo) {
 //		this.tipoVehiculo = tipoVehiculo;
 //	}

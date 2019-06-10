@@ -32,6 +32,11 @@ public class RegistroParqueoController {
 		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarMotos(), HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/list-vehiculos", method = RequestMethod.GET)
+	public ResponseEntity<List<RegistroParqueo>> listVehiculos(){
+		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarCarros(), HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/ingresar", method = RequestMethod.POST)
 	public ResponseEntity<String> ingresar(@RequestBody RegistroParqueoDto registroParqueoDto){
 		LocalDateTime fechaActual = LocalDateTime.now();

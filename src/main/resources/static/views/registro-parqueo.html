@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Pablo Parking</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type = "text/css" href="../css/pabloparking.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+</head>
+<body>
+<div class="container" ng-app="RegistroParqueoModule" ng-controller="RegistroParqueo">
+
+    <div id="menu" class="margin-top-30">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Ingreso Vehículos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Vehículos Retirados</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row margin-top-30">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" maxlength="50" ng-model="registroParqueoDto.placa" placeholder="Placa" aria-label="Placa" aria-describedby="button-addon2" required>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" maxlength="50" ng-model="registroParqueoDto.cilindraje" placeholder="Cilindraje" aria-label="Cilindraje" aria-describedby="button-addon2" required>
+        </div>
+        <div class="input-group mb-3">
+            <button ng-click="ingresar()" class="btn btn-sm btn-info">Ingresar</button>
+        </div>
+        <div id="text-error" class="alert alert-danger" role="alert" ng-show="textError !== '' ">{{textError}}</div>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Placa</th>
+                <th scope="col">Tipo de Vehículo</th>
+                <th scope="col">Cilindraje</th>
+                <th scope="col">Fecha de Ingreso</th>
+                <th scope="col">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="vehiculo in listVehiculosIngresados">
+                <th scope="row">{{vehiculo.placa}}</th>
+                <td>{{vehiculo.tipoVehiculo}}</td>
+                <td>{{vehiculo.cilindraje}}</td>
+                <td>{{vehiculo.fechaHoraIngreso}}</td>
+                <td>
+                    <div class="input-group mb-3">
+                        <button ng-click="retirar(vehiculo)" class="btn btn-sm btn-info">Retirar</button>
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="../js/registro-vehiculo.js"></script>
+</html>
