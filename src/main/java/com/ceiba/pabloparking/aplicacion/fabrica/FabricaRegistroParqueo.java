@@ -10,7 +10,7 @@ import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqu
 @Component
 public class FabricaRegistroParqueo {
 	
-	public RegistroParqueo convertirComandoADominio(ComandoRegistroParqueo comandoRegistroParqueo) {
+	public RegistroParqueo convertirComandoADominio(ComandoRegistroParqueo comandoRegistroParqueo) { // TODO probles - Este método también se puede eliminar 
 		RegistroParqueo registroParqueo = null;
 		if(comandoRegistroParqueo != null) {
 			registroParqueo = new RegistroParqueo(comandoRegistroParqueo.getId(), 
@@ -19,7 +19,7 @@ public class FabricaRegistroParqueo {
 													comandoRegistroParqueo.getCilindraje(), 
 													comandoRegistroParqueo.getFechaHoraIngreso());
 			
-			// Se complementan los demï¿½s atributos que no tenia en cuenta el constructor
+			// Se complementan los demás atributos que no tenia en cuenta el constructor
 			
 			if(comandoRegistroParqueo.getFechaHoraSalida() != null) {
 				registroParqueo.setFechaHoraSalida(comandoRegistroParqueo.getFechaHoraSalida());

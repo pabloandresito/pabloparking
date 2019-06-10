@@ -7,6 +7,13 @@ import com.ceiba.pabloparking.dominio.RegistroParqueo;
 public interface RepositorioRegistroParqueo {
 	
 	/**
+	 * Permite obtener el RegistroParqueo por id
+	 * @param id
+	 * @return
+	 */
+	RegistroParqueo getById(Long id);
+	
+	/**
 	 * Permite crear un RegistroParqueo
 	 * @param registroParqueo
 	 * @return el id generado

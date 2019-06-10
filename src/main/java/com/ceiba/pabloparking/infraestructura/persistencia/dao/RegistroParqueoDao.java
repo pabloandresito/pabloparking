@@ -2,6 +2,7 @@ package com.ceiba.pabloparking.infraestructura.persistencia.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,12 @@ public class RegistroParqueoDao implements RepositorioRegistroParqueo {
 	
 	@Autowired
 	private FabricaRegistroParqueo fabricaRegistroParqueo;
+	
+	@Override
+	public RegistroParqueo getById(Long id) {
+		Optional<RegistroParqueoEntidad> registroParqueoEntidadResultado = conexionDBRegistroParqueo.findById(id);
+		return registroParqueoEntidadResultado.isPresent() ? (fabricaRegistroParqueo.convertirEntityADominio(registroParqueoEntidadResultado.get())) : null;
+	}
 	
 	@Override
 	public Long crear(RegistroParqueo registroParqueo) {
