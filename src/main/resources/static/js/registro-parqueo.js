@@ -32,6 +32,27 @@ app.controller("registroParqueo", function($scope, $http) {
             }
         }).then(success, error);
     };
+    
+    $scope.retirar = function() {
+
+        $scope.textError = "";
+
+        /*if(validaciones($scope.registroParqueoDto)) {
+            $scope.textError = "Por favor ingrese de manera correcta los datos";
+            return false;
+        }*/
+
+        $http({
+            method: "POST",
+            url: '/retirar-parqueo/retirar',
+            data: {
+                id: $scope.registroParqueoDto.id
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(success, error);
+    };
 
     function refrescarListaVehiculos() {
         $http({

@@ -22,7 +22,7 @@ public class PabloparkingApplication {
 	private static final Logger log = LoggerFactory.getLogger(PabloparkingApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(PabloparkingApplication.class, args);
+		SpringApplication.run(PabloparkingApplication.class, args); // TODO probles - Pendiente de cuadrar archivo de sonar
 	}
 	
 //	@Bean
