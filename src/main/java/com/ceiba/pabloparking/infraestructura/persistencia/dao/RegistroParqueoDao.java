@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.pabloparking.aplicacion.fabrica.FabricaRegistroParqueo;
+import com.ceiba.pabloparking.dominio.EstadoVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
 import com.ceiba.pabloparking.dominio.repositorio.RepositorioRegistroParqueo;
@@ -39,8 +40,24 @@ public class RegistroParqueoDao implements RepositorioRegistroParqueo {
 
 	@Override
 	public boolean existeIngresado(String placa) {
-		// TODO probles - Pendiente de implementación
-		return false;
+		RegistroParqueoEntidad registroParqueoEntidad = conexionDBRegistroParqueo.findByPlacaAndEstadoInOut(placa, EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado());
+		if(registroParqueoEntidad != null && registroParqueoEntidad.getId() != null && registroParqueoEntidad.getId() > 0l) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	@Override
+	public List<RegistroParqueo> consultarVehiculosIngresados() {
+		List<RegistroParqueoEntidad> listRegistroParqueoEntidad = conexionDBRegistroParqueo.findByEstadoInOutOrderByIdDesc(EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado());
+		
+		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
+		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoEntidad) {
+			listRegistroParqueo.add(fabricaRegistroParqueo.convertirEntityADominio(registroParqueoEntidad));
+		}
+		return listRegistroParqueo;
 	}
 
 	@Override

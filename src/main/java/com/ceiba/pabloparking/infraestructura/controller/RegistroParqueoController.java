@@ -22,6 +22,11 @@ public class RegistroParqueoController {
 	@Autowired
     private ManejadorVigilanteRegistrarVehiculo manejadorVigilanteRegistrarVehiculo;
 	
+	@RequestMapping(value = "/list-vehiculos", method = RequestMethod.GET)
+	public ResponseEntity<List<RegistroParqueo>> listVehiculos(){
+		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarVehiculosIngresados(), HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/list-carros", method = RequestMethod.GET)
 	public ResponseEntity<List<RegistroParqueo>> listCarros(){
 		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarCarros(), HttpStatus.OK);
@@ -30,11 +35,6 @@ public class RegistroParqueoController {
 	@RequestMapping(value = "/list-motos", method = RequestMethod.GET)
 	public ResponseEntity<List<RegistroParqueo>> listMotos(){
 		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarMotos(), HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/list-vehiculos", method = RequestMethod.GET)
-	public ResponseEntity<List<RegistroParqueo>> listVehiculos(){
-		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarCarros(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/ingresar", method = RequestMethod.POST)

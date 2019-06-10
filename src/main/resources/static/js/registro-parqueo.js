@@ -52,7 +52,7 @@ app.controller("registroParqueo", function($scope, $http) {
     function error(res) {
         var data = res.data;
         var status = res.status;
-        $scope.textError = "Ocurrio un error " + data.message;
+        $scope.textError = data.message;
     }
 
     function limpiarFormulario() {

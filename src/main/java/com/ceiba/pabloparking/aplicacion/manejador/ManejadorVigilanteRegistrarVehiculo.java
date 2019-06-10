@@ -24,6 +24,10 @@ public class ManejadorVigilanteRegistrarVehiculo {
 		RegistroParqueo registroParqueo = fabricaRegistroParqueo.convertirComandoADominio(comandoRegistroParqueo);
 		return servicioVigilanteRegistrarVehiculo.ejecutar(registroParqueo);
 	}
+	
+	public List<RegistroParqueo> consultarVehiculosIngresados() {
+		return servicioVigilanteRegistrarVehiculo.consultarVehiculosIngresados();
+	}
 
 	public List<RegistroParqueo> consultarCarros() {
 		return servicioVigilanteRegistrarVehiculo.consultarCarros();

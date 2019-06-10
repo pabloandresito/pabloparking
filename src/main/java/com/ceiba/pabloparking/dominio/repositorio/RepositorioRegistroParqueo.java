@@ -31,6 +31,12 @@ public interface RepositorioRegistroParqueo {
      * @return si existe o no
      */
 	boolean existeIngresado(String placa);
+	
+	/**
+	 * Permite consultar la lista de vehiculos (Carros y Motos) que estan ingresados al parqueadero
+	 * @return java.util.List<RegistroParqueo>
+	 */
+	List<RegistroParqueo> consultarVehiculosIngresados();
 
 	/**
 	 * Permite consultar la lista de carros que estan ingresados al parqueadero
