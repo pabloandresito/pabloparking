@@ -10,9 +10,9 @@ import org.junit.Test;
 import com.ceiba.pabloparking.dominio.EstadoVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
-import com.ceiba.pabloparking.dominio.buildertest.ParqueaderoTestDataBuilder;
+import com.ceiba.pabloparking.dominio.buildertest.RegistroParqueoTestDataBuilder;
 
-public class ParqueaderoTest {
+public class RegistroParqueoTest {
 	
 	private static final Integer TIPOVEHICULO = TipoVehiculo.MOTO.getIdTipoVehiculo();
 	private static final String PLACA = "MSQ253";
@@ -27,10 +27,10 @@ public class ParqueaderoTest {
 	private static final Integer ESTADOINOUT = EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado();
 	
 	@Test
-	public void crearParqueaderoTest() {
+	public void crearRegistroParqueoTest() {
 		
 		// arrange
-		ParqueaderoTestDataBuilder parqueaderoTestDataBuilder = new ParqueaderoTestDataBuilder().
+		RegistroParqueoTestDataBuilder registroParqueoTestDataBuilder = new RegistroParqueoTestDataBuilder().
 				withTipoVehiculo(TIPOVEHICULO).
 				withPlaca(PLACA).
 				withCilindraje(CILINDRAJE).
@@ -40,15 +40,15 @@ public class ParqueaderoTest {
 				withEstadoInOut(ESTADOINOUT);
 
 		// act
-		RegistroParqueo parqueadero = parqueaderoTestDataBuilder.build();
+		RegistroParqueo registroParqueo = registroParqueoTestDataBuilder.build();
 
 		// assert
-		assertEquals(TIPOVEHICULO, parqueadero.getTipoVehiculo());
-		assertEquals(PLACA, parqueadero.getPlaca());
-		assertEquals(CILINDRAJE, parqueadero.getCilindraje());
-		assertEquals(FECHAHORAINGRESO, parqueadero.getFechaHoraIngreso());
-		assertEquals(FECHAHORASALIDA, parqueadero.getFechaHoraSalida());
-		assertEquals(VALORPARQUEO, parqueadero.getValorParqueo());
-		assertEquals(ESTADOINOUT, parqueadero.getEstadoInOut());
+		assertEquals(TIPOVEHICULO, registroParqueo.getTipoVehiculo());
+		assertEquals(PLACA, registroParqueo.getPlaca());
+		assertEquals(CILINDRAJE, registroParqueo.getCilindraje());
+		assertEquals(FECHAHORAINGRESO, registroParqueo.getFechaHoraIngreso());
+		assertEquals(FECHAHORASALIDA, registroParqueo.getFechaHoraSalida());
+		assertEquals(VALORPARQUEO, registroParqueo.getValorParqueo());
+		assertEquals(ESTADOINOUT, registroParqueo.getEstadoInOut());
 	}
 }

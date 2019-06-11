@@ -8,8 +8,9 @@ import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
-public class ParqueaderoTestDataBuilder {
+public class RegistroParqueoTestDataBuilder {
 	
+	private static final Long ID = null;
 	private static final Integer TIPOVEHICULO = TipoVehiculo.MOTO.getIdTipoVehiculo();
 	private static final String PLACA = "RRR888";
 	private static final Integer CILINDRAJE = 300;
@@ -23,6 +24,7 @@ public class ParqueaderoTestDataBuilder {
 	private static final Double VALORPARQUEO = 6000d;
 	private static final Integer ESTADOINOUT = EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado();
 	
+	private Long id;
 	private Integer tipoVehiculo;
 	private String placa;
 	private Integer cilindraje;
@@ -31,7 +33,8 @@ public class ParqueaderoTestDataBuilder {
 	private Double valorParqueo;
 	private Integer estadoInOut;
 	
-	public ParqueaderoTestDataBuilder() {
+	public RegistroParqueoTestDataBuilder() {
+		this.id = ID;
 		this.tipoVehiculo = TIPOVEHICULO;
 		this.placa = PLACA;
 		this.cilindraje = CILINDRAJE;
@@ -41,49 +44,69 @@ public class ParqueaderoTestDataBuilder {
 		this.estadoInOut = ESTADOINOUT;
 	}
 	
-	public ParqueaderoTestDataBuilder withTipoVehiculo(Integer tipoVehiculo) {
+	public RegistroParqueoTestDataBuilder withId(Long id) {
+		this.id = id;
+		return this;
+	}
+	
+	public RegistroParqueoTestDataBuilder withTipoVehiculo(Integer tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withPlaca(String placa) {
+	public RegistroParqueoTestDataBuilder withPlaca(String placa) {
 		this.placa = placa;
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withCilindraje(Integer cilindraje) {
+	public RegistroParqueoTestDataBuilder withCilindraje(Integer cilindraje) {
 		this.cilindraje = cilindraje;
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withFechaHoraIngreso(LocalDateTime fechaHoraIngreso) {
+	public RegistroParqueoTestDataBuilder withFechaHoraIngreso(LocalDateTime fechaHoraIngreso) {
 		this.fechaHoraIngreso = fechaHoraIngreso;
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withFechaHoraSalida(LocalDateTime fechaHoraSalida) {
+	public RegistroParqueoTestDataBuilder withFechaHoraSalida(LocalDateTime fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withValorParqueo(Double valorParqueo) {
+	public RegistroParqueoTestDataBuilder withValorParqueo(Double valorParqueo) {
 		this.valorParqueo = valorParqueo;
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder withEstadoInOut(Integer estadoInOut) {
+	public RegistroParqueoTestDataBuilder withEstadoInOut(Integer estadoInOut) {
 		this.estadoInOut = estadoInOut;
 		return this;
 	}
 
 	public RegistroParqueo build() {
-		return new RegistroParqueo(null, this.tipoVehiculo, this.placa, this.cilindraje, this.fechaHoraIngreso);
+		RegistroParqueo registroParqueo = new RegistroParqueo(this.id, this.tipoVehiculo, this.placa, this.cilindraje, this.fechaHoraIngreso);
+		
+		if(this.fechaHoraSalida != null) {
+			registroParqueo.setFechaHoraSalida(this.fechaHoraSalida);
+		}
+		
+		if(this.valorParqueo != null) {
+			registroParqueo.setValorParqueo(this.valorParqueo);
+		}
+		
+		if(this.estadoInOut != null) {
+			registroParqueo.setEstadoInOut(this.estadoInOut);
+		}
+		
+		return registroParqueo;
 	}
 	
 	public RegistroParqueoEntidad buildEntity() {
 		
 		RegistroParqueoEntidad registroParqueoEntidad = new RegistroParqueoEntidad();
 		
+		registroParqueoEntidad.setId(this.id);
 		registroParqueoEntidad.setTipoVehiculo(this.tipoVehiculo);
 		registroParqueoEntidad.setPlaca(this.placa);
 		registroParqueoEntidad.setCilindraje(this.cilindraje);
