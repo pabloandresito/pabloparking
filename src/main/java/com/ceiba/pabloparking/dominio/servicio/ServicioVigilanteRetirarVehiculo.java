@@ -38,7 +38,7 @@ public class ServicioVigilanteRetirarVehiculo {
 		RegistroParqueo registroParqueoUpdate = repositorioRegistroParqueo.getById(id);
 		
 		if(registroParqueoUpdate != null && registroParqueoUpdate.getEstadoInOut() == EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado()) {
-			registroParqueoUpdate.setFechaHoraSalida(fechaHoraSalida); // TODO probles - Pendiente de validar fechaHoraSalida valida
+			registroParqueoUpdate.setFechaHoraSalida(fechaHoraSalida);
 			registroParqueoUpdate.setValorParqueo(calcularValorParqueo(registroParqueoUpdate));
 			registroParqueoUpdate.setEstadoInOut(EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado());
 			

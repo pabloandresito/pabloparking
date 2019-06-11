@@ -12,6 +12,7 @@ public class RegistroParqueo {
 	private static final String OBLIGATORIO_CILINDRAJE_MOTO = "Se debe ingresar el cilindraje de la moto.";
 	private static final String POSITIVO_CILINDRAJE_MOTO = "Se debe ingresar un cilindraje mayor que cero.";
 	private static final String OBLIGATORIO_FECHA_INGRESO = "Se debe llenar la fecha de ingreso.";
+	private static final String FECHA_DE_SALIDA_MENOR_A_FECHA_DE_INGRESO = "La fecha de salida no puede ser menor a la fecha de ingreso.";
 	
 	private Long id;
 	private Integer tipoVehiculo;
@@ -65,7 +66,7 @@ public class RegistroParqueo {
 		return tipoVehiculo;
 	}
 
-	// A nivel de negocio no se debe poder modificar el tipo de vehiculo y por est� razon se quita el m�todo SET
+	// A nivel de negocio no se debe poder modificar el tipo de vehiculo y por esta razon se quita el metodo SET
 //	public void setTipoVehiculo(Integer tipoVehiculo) {
 //		this.tipoVehiculo = tipoVehiculo;
 //	}
@@ -98,7 +99,10 @@ public class RegistroParqueo {
 		return fechaHoraSalida;
 	}
 
-	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) { // TODO probles - Aqui se debe validar que la fecha final no debe menor a la fecha inicial
+	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
+		if(fechaHoraSalida != null) {
+			ValidadorArgumento.validarFechaIngresoYFechaSalida(this.fechaHoraIngreso, fechaHoraSalida, FECHA_DE_SALIDA_MENOR_A_FECHA_DE_INGRESO);
+		}
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 

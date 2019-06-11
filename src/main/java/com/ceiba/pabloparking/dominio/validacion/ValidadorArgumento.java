@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.ceiba.pabloparking.dominio.excepcion.ExcepcionFechaSalidaMenorFechaIngreso;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorObligatorio;
@@ -118,5 +119,11 @@ public class ValidadorArgumento {
 			placaIniciaConA = true;
 		}
 		return placaIniciaConA;
+	}
+
+	public static void validarFechaIngresoYFechaSalida(LocalDateTime fechaHoraIngreso, LocalDateTime fechaHoraSalida, String mensaje) {
+		if(fechaHoraSalida.isBefore(fechaHoraIngreso)) {
+			throw new ExcepcionFechaSalidaMenorFechaIngreso(mensaje);
+		}
 	}
 }
