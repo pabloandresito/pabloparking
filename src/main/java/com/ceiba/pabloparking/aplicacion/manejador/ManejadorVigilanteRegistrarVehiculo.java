@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ceiba.pabloparking.aplicacion.comando.ComandoRegistroParqueo;
 import com.ceiba.pabloparking.aplicacion.fabrica.FabricaRegistroParqueo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.servicio.ServicioVigilanteRegistrarVehiculo;
+import com.ceiba.pabloparking.infraestructura.controller.dto.RegistroParqueoDto;
 
 @Component
 public class ManejadorVigilanteRegistrarVehiculo {
@@ -19,16 +19,12 @@ public class ManejadorVigilanteRegistrarVehiculo {
 	@Autowired
 	private ServicioVigilanteRegistrarVehiculo servicioVigilanteRegistrarVehiculo;
 
-	public Long ejecutar(ComandoRegistroParqueo comandoRegistroParqueo) {
-		RegistroParqueo registroParqueo = fabricaRegistroParqueo.convertirComandoADominio(comandoRegistroParqueo);
+	public Long ejecutar(RegistroParqueoDto registroParqueoDto) {
+		RegistroParqueo registroParqueo = fabricaRegistroParqueo.convertirDtoADominio(registroParqueoDto);
 		return servicioVigilanteRegistrarVehiculo.ejecutar(registroParqueo);
 	}
-
-	public List<RegistroParqueo> consultarCarros() {
-		return servicioVigilanteRegistrarVehiculo.consultarCarros();
-	}
 	
-	public List<RegistroParqueo> consultarMotos() {
-		return servicioVigilanteRegistrarVehiculo.consultarMotos();
+	public List<RegistroParqueo> consultarVehiculosIngresados() {
+		return servicioVigilanteRegistrarVehiculo.consultarVehiculosIngresados();
 	}
 }
