@@ -58,10 +58,23 @@ public class PabloparkingApplication {
 	@Bean
 	public CommandLineRunner demoParqueadero(ConexionDBRegistroParqueo conexionDBRegistroParqueo, FabricaRegistroParqueo fabricaRegistroParqueo) {
 		return (args) -> {
-			// save a couple of customers
+			// save a couple of cars
 			LocalDateTime fechaHoraIngreso = LocalDateTime.of(2019, Month.MAY, 4, 11, 23, 1);
 			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(TipoVehiculo.CARRO.getIdTipoVehiculo(), "CSP777", null, fechaHoraIngreso)));
 			
+			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 10, 9, 0, 1);
+			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(TipoVehiculo.CARRO.getIdTipoVehiculo(), "CSP888", null, fechaHoraIngreso)));
+			
+			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 10, 11, 0, 1);
+			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(TipoVehiculo.CARRO.getIdTipoVehiculo(), "CSP999", null, fechaHoraIngreso)));
+			
+			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 10, 10, 45, 1);
+			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(TipoVehiculo.CARRO.getIdTipoVehiculo(), "CSP666", null, fechaHoraIngreso)));
+			
+			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 10, 10, 50, 1);
+			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(TipoVehiculo.CARRO.getIdTipoVehiculo(), "CSP555", null, fechaHoraIngreso)));
+			
+			// save a couple of Bikes
 			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 12, 4, 34, 15);
 			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSQ999", 600, fechaHoraIngreso)));
 			

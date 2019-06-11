@@ -9,6 +9,8 @@ import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqu
 public interface ConexionDBRegistroParqueo extends CrudRepository<RegistroParqueoEntidad, Long> {
 	
 	List<RegistroParqueoEntidad> findByEstadoInOutOrderByIdDesc(Integer idEstadoInOut);
+	
+	List<RegistroParqueoEntidad> findByTipoVehiculoOrderByIdDesc(Integer tipoVehiculo);
 
 	RegistroParqueoEntidad findByPlacaAndEstadoInOut(String placa, Integer idEstadoInOut);
 	

@@ -66,14 +66,11 @@ app.controller("registroParqueo", function($scope, $http) {
     }
 
     function success(res) {
-    	alert(res);
-    	alert("Success");
     	refrescarListaVehiculos();
         limpiarFormulario();
     }
 
     function error(res) {
-    	alert("error - Aqui voy !!!");
         var data = res.data;
         var status = res.status;
         $scope.textError = data.message;
