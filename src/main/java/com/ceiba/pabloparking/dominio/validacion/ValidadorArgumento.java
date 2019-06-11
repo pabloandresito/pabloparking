@@ -1,5 +1,6 @@
 package com.ceiba.pabloparking.dominio.validacion;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.ceiba.pabloparking.dominio.excepcion.ExcepcionFechaSalidaMenorFechaIngreso;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorObligatorio;
@@ -102,4 +104,26 @@ public class ValidadorArgumento {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
+    
+    public static void validarNoLunesNiDomingoPlacaIniciaConA(String placa, LocalDateTime fechaHoraIngreso, String mensaje) {
+		if(validarPlacaIniciaConA(placa)) {
+			if( !(fechaHoraIngreso.getDayOfWeek() == DayOfWeek.MONDAY || fechaHoraIngreso.getDayOfWeek() == DayOfWeek.MONDAY) ) {
+				throw new ExcepcionValorInvalido(mensaje);
+			}
+		}
+	}
+
+	public static boolean validarPlacaIniciaConA(String placa) {
+		boolean placaIniciaConA = false;
+		if(StringUtils.isNoneBlank(placa) && StringUtils.startsWithAny(placa, "a", "A")) {
+			placaIniciaConA = true;
+		}
+		return placaIniciaConA;
+	}
+
+	public static void validarFechaIngresoYFechaSalida(LocalDateTime fechaHoraIngreso, LocalDateTime fechaHoraSalida, String mensaje) {
+		if(fechaHoraSalida.isBefore(fechaHoraIngreso)) {
+			throw new ExcepcionFechaSalidaMenorFechaIngreso(mensaje);
+		}
+	}
 }

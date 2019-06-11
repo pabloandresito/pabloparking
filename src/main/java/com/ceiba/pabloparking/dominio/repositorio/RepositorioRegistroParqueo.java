@@ -7,6 +7,13 @@ import com.ceiba.pabloparking.dominio.RegistroParqueo;
 public interface RepositorioRegistroParqueo {
 	
 	/**
+	 * Permite obtener el RegistroParqueo por id
+	 * @param id
+	 * @return
+	 */
+	RegistroParqueo getById(Long id);
+	
+	/**
 	 * Permite crear un RegistroParqueo
 	 * @param registroParqueo
 	 * @return el id generado
@@ -31,16 +38,18 @@ public interface RepositorioRegistroParqueo {
      * @return si existe o no
      */
 	boolean existeIngresado(String placa);
-
+	
 	/**
-	 * Permite consultar la lista de carros que estan ingresados al parqueadero
+	 * Permite consultar la lista de vehiculos (Carros y Motos) que estan ingresados al parqueadero
 	 * @return java.util.List<RegistroParqueo>
 	 */
-	List<RegistroParqueo> consultarCarros();
-
+	List<RegistroParqueo> consultarVehiculosIngresados();
+		
 	/**
-	 * Permite consultar la lista de motos que estan ingresadas al parqueadero
-	 * @return java.util.List<RegistroParqueo>
+	 * Permite hacer un count por tipoVehiculo y estadoVehiculoInOut
+	 * @param tipoVehiculo
+	 * @param idEstadoInOut
+	 * @return int - count
 	 */
-	List<RegistroParqueo> consultarMotos();
+	int countByTipoVehiculoAndEstadoInOut(Integer tipoVehiculo, Integer idEstadoInOut);
 }
