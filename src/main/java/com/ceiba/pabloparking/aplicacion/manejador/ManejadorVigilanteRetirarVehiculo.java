@@ -12,7 +12,7 @@ public class ManejadorVigilanteRetirarVehiculo {
 	@Autowired
 	private ServicioVigilanteRetirarVehiculo servicioVigilanteRetirarVehiculo;
 
-	public void ejecutar(RegistroParqueoDto registroParqueoDto) {
-		servicioVigilanteRetirarVehiculo.ejecutar(registroParqueoDto.getId(), registroParqueoDto.getFechaHoraSalida());
+	public String ejecutar(RegistroParqueoDto registroParqueoDto) {
+		return servicioVigilanteRetirarVehiculo.ejecutar(registroParqueoDto.getId(), registroParqueoDto.getFechaHoraSalida());
 	}	
 }

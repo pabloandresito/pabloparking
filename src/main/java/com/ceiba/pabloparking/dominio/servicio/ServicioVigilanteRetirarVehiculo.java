@@ -14,6 +14,9 @@ import com.ceiba.pabloparking.dominio.repositorio.RepositorioRegistroParqueo;
 @Service
 public class ServicioVigilanteRetirarVehiculo {
 	
+	private static final String MENSAJE_VEHICULO_RETIRADO_DEL_PARQUEADERO = "Vehiculo Retirado - El valor a pagar es: $";
+	private static final String MENSAJE_VEHICULO_YA_RETIRADO_EN_EL_PASADO = " ya ha sido retirado con anterioridad - El valor pagado fue de: $";
+	
 	private static double valorHoraCarro = 1000d;
 	private static double valorHoraMoto = 500d;
 	private static double valorDiaCarro = 8000d;
@@ -29,15 +32,27 @@ public class ServicioVigilanteRetirarVehiculo {
 	@Autowired
 	private RepositorioRegistroParqueo repositorioRegistroParqueo;
 	
-	public void ejecutar(Long id, LocalDateTime fechaHoraSalida) {
+	public String ejecutar(Long id, LocalDateTime fechaHoraSalida) {
+		StringBuilder mensajeRespuesta = new StringBuilder();
 		// Obtenemos el objeto de domio a actualizar
-		RegistroParqueo registroParqueoUpdate = repositorioRegistroParqueo.getById(id); // TODO probles - Validar si el vehiculo ya esta retirado
+		RegistroParqueo registroParqueoUpdate = repositorioRegistroParqueo.getById(id);
 		
-		registroParqueoUpdate.setFechaHoraSalida(fechaHoraSalida); // TODO probles - Pendiente de validar fechaHoraSalida valida
-		registroParqueoUpdate.setValorParqueo(calcularValorParqueo(registroParqueoUpdate));
-		registroParqueoUpdate.setEstadoInOut(EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado());
+		if(registroParqueoUpdate != null && registroParqueoUpdate.getEstadoInOut() == EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado()) {
+			registroParqueoUpdate.setFechaHoraSalida(fechaHoraSalida); // TODO probles - Pendiente de validar fechaHoraSalida valida
+			registroParqueoUpdate.setValorParqueo(calcularValorParqueo(registroParqueoUpdate));
+			registroParqueoUpdate.setEstadoInOut(EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado());
+			
+			mensajeRespuesta.append(MENSAJE_VEHICULO_RETIRADO_DEL_PARQUEADERO);
+			mensajeRespuesta.append(registroParqueoUpdate.getValorParqueo());
+		} else {
+			mensajeRespuesta.append(registroParqueoUpdate.getPlaca());
+			mensajeRespuesta.append(MENSAJE_VEHICULO_YA_RETIRADO_EN_EL_PASADO);
+			mensajeRespuesta.append(registroParqueoUpdate.getValorParqueo());
+		}
 		
 		repositorioRegistroParqueo.actualizar(registroParqueoUpdate);
+		
+		return mensajeRespuesta.toString();
     }
 	
 	public double calcularValorParqueo(RegistroParqueo registroParqueo) {

@@ -3,7 +3,6 @@ package com.ceiba.pabloparking.infraestructura.controller;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,8 +23,8 @@ public class RetiroParqueoController {
 	public ResponseEntity<String> retirar(@RequestBody RegistroParqueoDto registroParqueoDto){
 		LocalDateTime fechaHoraSalida = LocalDateTime.now();
 		registroParqueoDto.setFechaHoraSalida(fechaHoraSalida);
-		manejadorVigilanteRetirarVehiculo.ejecutar(registroParqueoDto); // TODO probles - Enviar mensaje de respuesta desde el backend
+		String mensaje = manejadorVigilanteRetirarVehiculo.ejecutar(registroParqueoDto);
 		
-		return ResponseEntity.status(HttpStatus.OK).body("Todo ok");
+		return ResponseEntity.ok().body(mensaje);
 	}
 }

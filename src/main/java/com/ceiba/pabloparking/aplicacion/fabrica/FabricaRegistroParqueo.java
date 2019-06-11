@@ -10,7 +10,7 @@ import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqu
 @Component
 public class FabricaRegistroParqueo {
 	
-	public RegistroParqueo convertirComandoADominio(ComandoRegistroParqueo comandoRegistroParqueo) { // TODO probles - Este método también se puede eliminar 
+	public RegistroParqueo convertirComandoADominio(ComandoRegistroParqueo comandoRegistroParqueo) { 
 		RegistroParqueo registroParqueo = null;
 		if(comandoRegistroParqueo != null) {
 			registroParqueo = new RegistroParqueo(comandoRegistroParqueo.getId(), 

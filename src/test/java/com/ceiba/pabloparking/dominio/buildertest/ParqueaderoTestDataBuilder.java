@@ -77,7 +77,7 @@ public class ParqueaderoTestDataBuilder {
 	}
 
 	public RegistroParqueo build() {
-		return new RegistroParqueo(this.tipoVehiculo, this.placa, this.cilindraje, this.fechaHoraIngreso);
+		return new RegistroParqueo(null, this.tipoVehiculo, this.placa, this.cilindraje, this.fechaHoraIngreso);
 	}
 	
 	public RegistroParqueoEntidad buildEntity() {

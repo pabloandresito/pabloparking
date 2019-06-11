@@ -19,6 +19,8 @@ import com.ceiba.pabloparking.infraestructura.controller.dto.RegistroParqueoDto;
 @RequestMapping("/registro-parqueo")
 public class RegistroParqueoController {
 	
+	private static final String VEHICULO_INGRESADO_EXITOSAMENTE = "El vehiculo ha sido ingresado al Parqueadero.";
+	
 	@Autowired
     private ManejadorVigilanteRegistrarVehiculo manejadorVigilanteRegistrarVehiculo;
 	
@@ -31,8 +33,8 @@ public class RegistroParqueoController {
 	public ResponseEntity<String> ingresar(@RequestBody RegistroParqueoDto registroParqueoDto){
 		LocalDateTime fechaHoraIngreso = LocalDateTime.now();
 		registroParqueoDto.setFechaHoraIngreso(fechaHoraIngreso);
-		manejadorVigilanteRegistrarVehiculo.ejecutar(registroParqueoDto); // TODO probles - Enviar mensaje de respuesta desde el backend
+		manejadorVigilanteRegistrarVehiculo.ejecutar(registroParqueoDto);
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body("Todo ok");
+		return ResponseEntity.status(HttpStatus.CREATED).body(VEHICULO_INGRESADO_EXITOSAMENTE);
 	}
 }
