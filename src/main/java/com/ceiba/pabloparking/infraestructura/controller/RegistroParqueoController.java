@@ -32,6 +32,7 @@ public class RegistroParqueoController {
 		LocalDateTime fechaHoraIngreso = LocalDateTime.now();
 		registroParqueoDto.setFechaHoraIngreso(fechaHoraIngreso);
 		manejadorVigilanteRegistrarVehiculo.ejecutar(registroParqueoDto); // TODO probles - Enviar mensaje de respuesta desde el backend
-		return new ResponseEntity<>("Urra !!!", HttpStatus.OK);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body("Todo ok");
 	}
 }

@@ -25,6 +25,7 @@ public class RetiroParqueoController {
 		LocalDateTime fechaHoraSalida = LocalDateTime.now();
 		registroParqueoDto.setFechaHoraSalida(fechaHoraSalida);
 		manejadorVigilanteRetirarVehiculo.ejecutar(registroParqueoDto); // TODO probles - Enviar mensaje de respuesta desde el backend
-		return new ResponseEntity<>("Retiro Ok !!!", HttpStatus.OK);
+		
+		return ResponseEntity.status(HttpStatus.OK).body("Todo ok");
 	}
 }

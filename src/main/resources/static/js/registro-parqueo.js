@@ -33,7 +33,7 @@ app.controller("registroParqueo", function($scope, $http) {
         }).then(success, error);
     };
     
-    $scope.retirar = function() {
+    $scope.retirar = function(vehiculo) {
 
         $scope.textError = "";
 
@@ -46,7 +46,7 @@ app.controller("registroParqueo", function($scope, $http) {
             method: "POST",
             url: '/retiro-parqueo/retirar',
             data: {
-                id: $scope.registroParqueoDto.id
+                id: vehiculo.id
             },
             headers: {
                 'Content-Type': 'application/json'
@@ -65,12 +65,15 @@ app.controller("registroParqueo", function($scope, $http) {
         );
     }
 
-    function success() {
+    function success(res) {
+    	alert(res);
+    	alert("Success");
     	refrescarListaVehiculos();
         limpiarFormulario();
     }
 
     function error(res) {
+    	alert("error - Aqui voy !!!");
         var data = res.data;
         var status = res.status;
         $scope.textError = data.message;
