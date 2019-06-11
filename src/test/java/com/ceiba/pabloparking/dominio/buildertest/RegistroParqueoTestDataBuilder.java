@@ -19,7 +19,7 @@ public class RegistroParqueoTestDataBuilder {
 	private static final LocalDateTime FECHAHORAINGRESO = LocalDateTime.of(2019, Month.JUNE, 4, 11, 23, 1);
 	
 	// Especificar indicando año, mes, día, horas, minutos, segundos y milisegundos
-	private static final LocalDateTime FECHAHORASALIDA = LocalDateTime.of(2019, Month.JUNE, 5, 13, 30, 40);
+	private static final LocalDateTime FECHAHORASALIDA = LocalDateTime.of(2019, Month.JUNE, 12, 13, 30, 40);
 	
 	private static final Double VALORPARQUEO = 6000d;
 	private static final Integer ESTADOINOUT = EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado();
