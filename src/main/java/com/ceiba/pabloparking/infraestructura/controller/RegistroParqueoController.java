@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ceiba.pabloparking.aplicacion.manejador.ManejadorVigilanteRegistrarVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
@@ -26,18 +27,18 @@ public class RegistroParqueoController {
 	@Autowired
     private ManejadorVigilanteRegistrarVehiculo manejadorVigilanteRegistrarVehiculo;
 	
-	@RequestMapping(value = "/list-vehiculos", method = RequestMethod.GET)
+	@GetMapping(value = "/list-vehiculos")
 	public ResponseEntity<List<RegistroParqueo>> listVehiculos(){
 		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarVehiculosIngresados(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/ingresar", method = RequestMethod.POST)
+	@PostMapping(value = "/ingresar")
 	public ResponseEntity<Map<String, String>> ingresar(@RequestBody RegistroParqueoDto registroParqueoDto){
 		LocalDateTime fechaHoraIngreso = LocalDateTime.now();
 		registroParqueoDto.setFechaHoraIngreso(fechaHoraIngreso);
 		manejadorVigilanteRegistrarVehiculo.ejecutar(registroParqueoDto);
 		
-		Map<String, String> mapResponse = new HashMap<String, String>();
+		Map<String, String> mapResponse = new HashMap<>();
 		mapResponse.put("message", VEHICULO_INGRESADO_EXITOSAMENTE);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(mapResponse);

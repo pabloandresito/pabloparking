@@ -123,12 +123,12 @@ public class RegistroParqueoTest {
 	@Test(expected = ExcepcionValorInvalido.class)
 	public void crearConPlacaIniciaConAyEsMartesTest() {
 		
-		String PlacaIniciaConA = "AMF852";
+		String placaIniciaConA = "AMF852";
 		LocalDateTime fechaIngresoMartes = LocalDateTime.of(2019, Month.JUNE, 11, 14, 12, 41);
 		
 		// arrange
 		RegistroParqueoTestDataBuilder registroParqueoTestDataBuilder = new RegistroParqueoTestDataBuilder().
-				withPlaca(PlacaIniciaConA).
+				withPlaca(placaIniciaConA).
 				withFechaHoraIngreso(fechaIngresoMartes);
 
 		// act
