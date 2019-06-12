@@ -51,6 +51,9 @@ public class ServicioActualizarRegistroParqueoTest {
 		RegistroParqueoEntidad registroParqueoEntidadUpdated = resultConsulta.isPresent() ? resultConsulta.get() : null;
 		
 		assertNotNull(registroParqueoEntidadUpdated);
-		assertEquals(VALOR_PARQUEO_UPDATE, registroParqueoEntidadUpdated.getValorParqueo().doubleValue(), 0d);
+		if(registroParqueoEntidadUpdated != null) {
+			assertEquals(VALOR_PARQUEO_UPDATE, registroParqueoEntidadUpdated.getValorParqueo().doubleValue(), 0d);
+		}
+	
 	}
 }

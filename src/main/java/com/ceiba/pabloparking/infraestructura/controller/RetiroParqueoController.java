@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ceiba.pabloparking.aplicacion.manejador.ManejadorVigilanteRetirarVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
@@ -24,23 +25,23 @@ public class RetiroParqueoController {
 	@Autowired
     private ManejadorVigilanteRetirarVehiculo manejadorVigilanteRetirarVehiculo;
 	
-	@RequestMapping("/load")
+	@GetMapping("/load")
     public String load() {
         return "vehiculos-retirados";
     }
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@GetMapping(value = "/list")
 	public ResponseEntity<List<RegistroParqueo>> list(){
 		return new ResponseEntity<>(manejadorVigilanteRetirarVehiculo.consultarVehiculosRetirados(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/retirar", method = RequestMethod.POST)
+	@PostMapping(value = "/retirar")
 	public ResponseEntity<Map<String, String>> retirar(@RequestBody RegistroParqueoDto registroParqueoDto){
 		LocalDateTime fechaHoraSalida = LocalDateTime.now();
 		registroParqueoDto.setFechaHoraSalida(fechaHoraSalida);
 		String mensaje = manejadorVigilanteRetirarVehiculo.ejecutar(registroParqueoDto);
 		
-		Map<String, String> mapResponse = new HashMap<String, String>();
+		Map<String, String> mapResponse = new HashMap<>();
 		mapResponse.put("message", mensaje);
 		
 		return ResponseEntity.ok().body(mapResponse);

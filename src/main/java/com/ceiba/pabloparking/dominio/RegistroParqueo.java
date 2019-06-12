@@ -38,7 +38,7 @@ public class RegistroParqueo {
 		// Validar cilindraje
 		if(tipoVehiculo == TipoVehiculo.MOTO.getIdTipoVehiculo()) {
 			ValidadorArgumento.validarObligatorio(cilindraje, OBLIGATORIO_CILINDRAJE_MOTO);
-			ValidadorArgumento.validarPositivo(new Double(cilindraje), POSITIVO_CILINDRAJE_MOTO);
+			ValidadorArgumento.validarPositivo(Double.valueOf(cilindraje), POSITIVO_CILINDRAJE_MOTO);
 			
 		} else { // Si el Vehiculo no es una moto entonces nos aseguramos que el cilindraje este null
 			cilindraje = null;

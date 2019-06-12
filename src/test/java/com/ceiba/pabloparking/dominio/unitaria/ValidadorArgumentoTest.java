@@ -44,11 +44,11 @@ public class ValidadorArgumentoTest {
 	@Test(expected = ExcepcionValorInvalido.class)
 	public void validarNoLunesNiDomingoPlacaIniciaConATest() {
 		
-		String PlacaIniciaConA = "AMF852";
+		String placaIniciaConA = "AMF852";
 		LocalDateTime fechaIngresoMartes = LocalDateTime.of(2019, Month.JUNE, 11, 14, 12, 41);
 		
 		// arrange
-		ValidadorArgumento.validarNoLunesNiDomingoPlacaIniciaConA(PlacaIniciaConA, fechaIngresoMartes, "");
+		ValidadorArgumento.validarNoLunesNiDomingoPlacaIniciaConA(placaIniciaConA, fechaIngresoMartes, "");
 
 		// See assert on annotation
 	}
