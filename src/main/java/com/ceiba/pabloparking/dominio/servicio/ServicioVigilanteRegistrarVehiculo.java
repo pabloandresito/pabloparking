@@ -17,10 +17,10 @@ public class ServicioVigilanteRegistrarVehiculo {
 	
 	private static final String VEHICULO_YA_INGRESADO_AL_PARQUEADERO = "Ya existe un vehiculo con esta placa ingresado en el parqueadero.";
 	
-	private static final int CAPACIDAD_MAX_DE_PARQUEADEROS_CARRO = 20;
+	public static final int CAPACIDAD_MAX_DE_PARQUEADEROS_CARRO = 20;
 	private static final String CAPACIDAD_MAX_DE_CARROS_ALCANZADA = "Se ha llegado a la capacidad máxima de Carros (" + CAPACIDAD_MAX_DE_PARQUEADEROS_CARRO + ") y ya no es posible ingresar nuevos Carros.";
 	
-	private static final int CAPACIDAD_MAX_DE_PARQUEADEROS_MOTOS = 10;
+	public static final int CAPACIDAD_MAX_DE_PARQUEADEROS_MOTOS = 10;
 	private static final String CAPACIDAD_MAX_DE_MOTOS_ALCANZADA = "Se ha llegado a la capacidad máxima de Motos (" + CAPACIDAD_MAX_DE_PARQUEADEROS_MOTOS + ") y ya no es posible ingresar nuevas Motos.";
     
 	@Autowired
@@ -36,14 +36,14 @@ public class ServicioVigilanteRegistrarVehiculo {
     	return repositorioRegistroParqueo.consultarVehiculosIngresados();
 	}
 
-	private void validarExistenciaPrevia(RegistroParqueo registroParqueo) {
+	public void validarExistenciaPrevia(RegistroParqueo registroParqueo) {
 		boolean existe = repositorioRegistroParqueo.existeIngresado(registroParqueo.getPlaca());
     	if(existe) {
     		throw new ExcepcionDuplicidad(VEHICULO_YA_INGRESADO_AL_PARQUEADERO);
     	}
 	}
 	
-	private void validarCapacidadMaximaParqueadero(RegistroParqueo registroParqueo) {
+	public void validarCapacidadMaximaParqueadero(RegistroParqueo registroParqueo) {
 		int capacidadMaximaParqueadero = repositorioRegistroParqueo.countByTipoVehiculoAndEstadoInOut(registroParqueo.getTipoVehiculo(), EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado());
     	
 		if(registroParqueo.getTipoVehiculo() == TipoVehiculo.CARRO.getIdTipoVehiculo() && capacidadMaximaParqueadero >= CAPACIDAD_MAX_DE_PARQUEADEROS_CARRO) {

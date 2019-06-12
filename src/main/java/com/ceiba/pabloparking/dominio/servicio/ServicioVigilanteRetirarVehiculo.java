@@ -17,6 +17,7 @@ public class ServicioVigilanteRetirarVehiculo {
 	
 	private static final String MENSAJE_VEHICULO_RETIRADO_DEL_PARQUEADERO = "Vehiculo Retirado - El valor a pagar es: $";
 	private static final String MENSAJE_VEHICULO_YA_RETIRADO_EN_EL_PASADO = " ya ha sido retirado con anterioridad - El valor pagado fue de: $";
+	private static final String MENSAJE_VEHICULO_YA_RETIRADO_EN_EL_PASADO_SIN_INFO = "El vehículo ya ha sido retirado con anterioridad.";
 	
 	private static double valorHoraCarro = 1000d;
 	private static double valorHoraMoto = 500d;
@@ -45,10 +46,12 @@ public class ServicioVigilanteRetirarVehiculo {
 			
 			mensajeRespuesta.append(MENSAJE_VEHICULO_RETIRADO_DEL_PARQUEADERO);
 			mensajeRespuesta.append(registroParqueoUpdate.getValorParqueo());
-		} else {
+		} else if(registroParqueoUpdate != null) {
 			mensajeRespuesta.append(registroParqueoUpdate.getPlaca());
 			mensajeRespuesta.append(MENSAJE_VEHICULO_YA_RETIRADO_EN_EL_PASADO);
 			mensajeRespuesta.append(registroParqueoUpdate.getValorParqueo());
+		} else {
+			mensajeRespuesta.append(MENSAJE_VEHICULO_YA_RETIRADO_EN_EL_PASADO_SIN_INFO);
 		}
 		
 		repositorioRegistroParqueo.actualizar(registroParqueoUpdate);

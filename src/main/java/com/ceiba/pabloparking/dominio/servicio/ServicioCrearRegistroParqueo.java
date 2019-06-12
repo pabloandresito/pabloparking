@@ -20,7 +20,7 @@ public class ServicioCrearRegistroParqueo {
         return repositorioRegistroParqueo.crear(registroParqueo);
     }
 
-	private void validarExistenciaPrevia(RegistroParqueo registroParqueo) {
+	public void validarExistenciaPrevia(RegistroParqueo registroParqueo) {
 		boolean existe = repositorioRegistroParqueo.existeIngresado(registroParqueo.getPlaca());
     	if(existe) {
     		throw new ExcepcionDuplicidad(VEHICULO_YA_INGRESADO_AL_PARQUEADERO);
