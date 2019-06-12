@@ -44,21 +44,23 @@ public class FabricaRegistroParqueo {
 													registroParqueoEntidad.getPlaca(), 
 													registroParqueoEntidad.getCilindraje(), 
 													registroParqueoEntidad.getFechaHoraIngreso());
-		}
-		
-		// Se complementan los dem�s atributos que no tenia en cuenta el constructor
+			
+			// Se complementan los dem�s atributos que no tenia en cuenta el constructor
 
-		if(registroParqueoEntidad.getFechaHoraSalida() != null) {
-			registroParqueo.setFechaHoraSalida(registroParqueoEntidad.getFechaHoraSalida());
+			if(registroParqueoEntidad.getFechaHoraSalida() != null) {
+				registroParqueo.setFechaHoraSalida(registroParqueoEntidad.getFechaHoraSalida());
+			}
+			
+			if(registroParqueoEntidad.getValorParqueo() != null) {
+				registroParqueo.setValorParqueo(registroParqueoEntidad.getValorParqueo());
+			}
+			
+			if(registroParqueoEntidad.getEstadoInOut() != null) {
+				registroParqueo.setEstadoInOut(registroParqueoEntidad.getEstadoInOut());
+			}
 		}
 		
-		if(registroParqueoEntidad.getValorParqueo() != null) {
-			registroParqueo.setValorParqueo(registroParqueoEntidad.getValorParqueo());
-		}
 		
-		if(registroParqueoEntidad.getEstadoInOut() != null) {
-			registroParqueo.setEstadoInOut(registroParqueoEntidad.getEstadoInOut());
-		}
 		return registroParqueo;
 	}
 

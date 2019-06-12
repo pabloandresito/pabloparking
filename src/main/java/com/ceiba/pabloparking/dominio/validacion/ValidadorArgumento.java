@@ -40,7 +40,7 @@ public class ValidadorArgumento {
     
     public static void validarNoLunesNiDomingoPlacaIniciaConA(String placa, LocalDateTime fechaHoraIngreso, String mensaje) {
 		if(validarPlacaIniciaConA(placa)) {
-			if( !(fechaHoraIngreso.getDayOfWeek() == DayOfWeek.MONDAY || fechaHoraIngreso.getDayOfWeek() == DayOfWeek.MONDAY) ) {
+			if( !(fechaHoraIngreso.getDayOfWeek() == DayOfWeek.MONDAY || fechaHoraIngreso.getDayOfWeek() == DayOfWeek.SUNDAY) ) {
 				throw new ExcepcionValorInvalido(mensaje);
 			}
 		}
