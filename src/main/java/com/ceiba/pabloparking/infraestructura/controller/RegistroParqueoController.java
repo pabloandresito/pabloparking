@@ -1,7 +1,9 @@
 package com.ceiba.pabloparking.infraestructura.controller;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,11 +32,14 @@ public class RegistroParqueoController {
 	}
 	
 	@RequestMapping(value = "/ingresar", method = RequestMethod.POST)
-	public ResponseEntity<String> ingresar(@RequestBody RegistroParqueoDto registroParqueoDto){
+	public ResponseEntity<Map<String, String>> ingresar(@RequestBody RegistroParqueoDto registroParqueoDto){
 		LocalDateTime fechaHoraIngreso = LocalDateTime.now();
 		registroParqueoDto.setFechaHoraIngreso(fechaHoraIngreso);
 		manejadorVigilanteRegistrarVehiculo.ejecutar(registroParqueoDto);
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(VEHICULO_INGRESADO_EXITOSAMENTE);
+		Map<String, String> mapResponse = new HashMap<String, String>();
+		mapResponse.put("message", VEHICULO_INGRESADO_EXITOSAMENTE);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(mapResponse);
 	}
 }

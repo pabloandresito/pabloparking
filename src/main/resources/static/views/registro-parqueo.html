@@ -13,36 +13,50 @@
     <div id="menu" class="margin-top-30">
         <ul class="nav nav-pills nav-fill">
             <li class="nav-item">
-                <a class="nav-link active" href="/">Ingreso Vehículos</a>
+                <a class="nav-link active" href="#">Ingreso Vehículos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Vehículos Retirados</a>
+                <a class="nav-link" href="/retiro-parqueo/load">Vehículos Retirados</a>
             </li>
         </ul>
     </div>
     <div class="row margin-top-30">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" maxlength="50" ng-model="registroParqueoDto.placa" placeholder="Placa" aria-label="Placa" aria-describedby="button-addon2" required>
-        </div>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" maxlength="50" ng-model="registroParqueoDto.cilindraje" placeholder="Cilindraje" aria-label="Cilindraje" aria-describedby="button-addon2" required>
-        </div>
-        <div class="input-group mb-3">
-	        <div class="form-check form-check-inline">
-			  <input class="form-check-input" ng-model="registroParqueoDto.tipoVehiculo" type="radio" name="tipoVehiculo" id="carro" value="1">
-			  <label class="form-check-label" for="carro">Carro</label>
+    	<div class="card width-100" style="width: 100% !important;">
+		  <div class="card-body">
+		  	<label class="strong">Ingresar un Nuevo Vehículo</label>
+		  	<div class="input-group mb-3">
+	            <input type="text" class="form-control" maxlength="50" ng-model="registroParqueoDto.placa" placeholder="Placa" aria-label="Placa" aria-describedby="button-addon2" required>
+	        </div>
+	        <div class="input-group mb-3">
+	            <input type="text" class="form-control" maxlength="50" ng-model="registroParqueoDto.cilindraje" placeholder="Cilindraje" aria-label="Cilindraje" aria-describedby="button-addon2" required>
+	        </div>
+	        <div class="input-group mb-3">
+		        <div class="form-check form-check-inline">
+				  <input class="form-check-input" ng-model="registroParqueoDto.tipoVehiculo" type="radio" name="tipoVehiculo" id="carro" value="1">
+				  <label class="form-check-label" for="carro">Carro</label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" ng-model="registroParqueoDto.tipoVehiculo" type="radio" name="tipoVehiculo" id="moto" value="2">
+				  <label class="form-check-label" for="moto">Moto</label>
+				</div>
 			</div>
-			<div class="form-check form-check-inline">
-			  <input class="form-check-input" ng-model="registroParqueoDto.tipoVehiculo" type="radio" name="tipoVehiculo" id="moto" value="2">
-			  <label class="form-check-label" for="moto">Moto</label>
-			</div>
+	        <div class="input-group mb-3">
+	            <button ng-click="ingresar()" class="btn btn-sm btn-info">Ingresar</button>
+	        </div>
+		  </div>
 		</div>
-        <div class="input-group mb-3">
-            <button ng-click="ingresar()" class="btn btn-sm btn-info">Ingresar</button>
-        </div>
+        
         <div id="text-error" class="alert alert-danger" role="alert" ng-show="textError !== '' ">{{textError}}</div>
+        
+        <div class="alert alert-success alert-dismissible fade show" role="alert" ng-show="textRetirar !== '' ">
+		  <strong>{{textRetirar}}</strong> 
+		</div>
+
     </div>
-    <div class="row">
+    <div class="row margin-top-30">
+    	
+    	<label class="strong">Lista de Vehículos Ingresados</label>
+    	
         <table class="table table-hover">
             <thead>
             <tr>
@@ -78,7 +92,6 @@
         </table>
     </div>
 </div>
-
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="../js/registro-parqueo.js"></script>
