@@ -40,11 +40,6 @@ public class RegistroParqueoDao implements RepositorioRegistroParqueo {
 	}
 
 	@Override
-	public void eliminar(Long idRegistroParqueo) {
-		conexionDBRegistroParqueo.deleteById(idRegistroParqueo);
-	}
-
-	@Override
 	public boolean existeIngresado(String placa) {
 		RegistroParqueoEntidad registroParqueoEntidad = conexionDBRegistroParqueo.findByPlacaAndEstadoInOut(placa, EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado());
 		if(registroParqueoEntidad != null && registroParqueoEntidad.getId() != null && registroParqueoEntidad.getId() > 0l) {

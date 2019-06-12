@@ -20,7 +20,7 @@ import com.ceiba.pabloparking.dominio.servicio.ServicioCrearRegistroParqueo;
 @RunWith(SpringRunner.class)
 public class ServicioCrearRegistroParqueoTest {
 	
-	private static final String PLACA = "MSO252";
+	private static final String PLACA = "MSO267";
 	
 	@Mock
 	private RepositorioRegistroParqueo repositorioRegistroParqueoMock;
