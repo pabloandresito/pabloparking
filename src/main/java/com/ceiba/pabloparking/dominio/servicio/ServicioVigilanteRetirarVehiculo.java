@@ -2,6 +2,7 @@ package com.ceiba.pabloparking.dominio.servicio;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,10 @@ public class ServicioVigilanteRetirarVehiculo {
 		
 		return mensajeRespuesta.toString();
     }
+	
+	public List<RegistroParqueo> consultarVehiculosRetirados() {
+    	return repositorioRegistroParqueo.consultarVehiculosRetirados();
+	}
 	
 	public double calcularValorParqueo(RegistroParqueo registroParqueo) {
 		double valorParqueo = 0d;

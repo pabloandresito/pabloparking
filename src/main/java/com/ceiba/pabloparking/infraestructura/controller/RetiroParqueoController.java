@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ceiba.pabloparking.aplicacion.manejador.ManejadorVigilanteRegistrarVehiculo;
 import com.ceiba.pabloparking.aplicacion.manejador.ManejadorVigilanteRetirarVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.infraestructura.controller.dto.RegistroParqueoDto;
@@ -25,10 +24,6 @@ public class RetiroParqueoController {
 	@Autowired
     private ManejadorVigilanteRetirarVehiculo manejadorVigilanteRetirarVehiculo;
 	
-	//TODO probles cambiar bean
-	@Autowired
-    private ManejadorVigilanteRegistrarVehiculo manejadorVigilanteRegistrarVehiculo;
-	
 	@RequestMapping("/load")
     public String load() {
         return "vehiculos-retirados";
@@ -36,7 +31,7 @@ public class RetiroParqueoController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseEntity<List<RegistroParqueo>> list(){
-		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarVehiculosIngresados(), HttpStatus.OK);
+		return new ResponseEntity<>(manejadorVigilanteRetirarVehiculo.consultarVehiculosRetirados(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/retirar", method = RequestMethod.POST)
