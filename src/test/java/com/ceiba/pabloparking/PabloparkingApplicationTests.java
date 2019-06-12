@@ -11,7 +11,7 @@ public class PabloparkingApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		
+		// Metodo para cargar la pantalla principal de la App
 	}
 
 }

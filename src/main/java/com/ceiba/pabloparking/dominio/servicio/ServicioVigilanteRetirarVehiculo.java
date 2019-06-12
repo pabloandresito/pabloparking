@@ -19,14 +19,14 @@ public class ServicioVigilanteRetirarVehiculo {
 	private static final String MENSAJE_VEHICULO_YA_RETIRADO_EN_EL_PASADO = " ya ha sido retirado con anterioridad - El valor pagado fue de: $";
 	private static final String MENSAJE_VEHICULO_YA_RETIRADO_EN_EL_PASADO_SIN_INFO = "El vehículo ya ha sido retirado con anterioridad.";
 	
-	private static double valorHoraCarro = 1000d;
-	private static double valorHoraMoto = 500d;
-	private static double valorDiaCarro = 8000d;
-	private static double valorDiaMoto = 4000d;
-	private static int valorLimiteCilindrajeParaCobroExcedenteMoto = 500;
-	private static double valorExcedenteMotoMayor500CC = 2000d;
+	public static double valorHoraCarro = 1000d;
+	public static double valorHoraMoto = 500d;
+	public static double valorDiaCarro = 8000d;
+	public static double valorDiaMoto = 4000d;
+	public static int valorLimiteCilindrajeParaCobroExcedenteMoto = 500;
+	public static double valorExcedenteMotoMayor500CC = 2000d;
 	
-	private static double horaDeInicioParaCobroDeDiaCompleto = 9d;
+	public static double horaDeInicioParaCobroDeDiaCompleto = 9d;
 	
 	private static double constanteConversionMinutosHoras = 3600d;
 	private static double constanteHorasDelDia = 24d;
@@ -80,7 +80,7 @@ public class ServicioVigilanteRetirarVehiculo {
 		return valorParqueo;
 	}
 	
-	private double calcularValorParqueoCarro(double diasPorCobrar, double horasRestantesPorCobrar) {
+	public double calcularValorParqueoCarro(double diasPorCobrar, double horasRestantesPorCobrar) {
 		double valorParqueoCarro = 0d;
 		
 		// Cobro por Días
@@ -97,7 +97,7 @@ public class ServicioVigilanteRetirarVehiculo {
 		return valorParqueoCarro;
 	}
 	
-	private double calcularValorParqueoMoto(double diasPorCobrar, double horasRestantesPorCobrar, int cilindraje) {
+	public double calcularValorParqueoMoto(double diasPorCobrar, double horasRestantesPorCobrar, int cilindraje) {
 		double valorParqueoMoto = 0d;
 		
 		// Cobro por Días

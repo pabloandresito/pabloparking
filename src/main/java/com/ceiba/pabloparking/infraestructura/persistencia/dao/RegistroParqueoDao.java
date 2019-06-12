@@ -42,19 +42,14 @@ public class RegistroParqueoDao implements RepositorioRegistroParqueo {
 	@Override
 	public boolean existeIngresado(String placa) {
 		RegistroParqueoEntidad registroParqueoEntidad = conexionDBRegistroParqueo.findByPlacaAndEstadoInOut(placa, EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado());
-		if(registroParqueoEntidad != null && registroParqueoEntidad.getId() != null && registroParqueoEntidad.getId() > 0l) {
-			return true;
-		} else {
-			return false;
-		}
-		
+		return (registroParqueoEntidad != null && registroParqueoEntidad.getId() != null && registroParqueoEntidad.getId() > 0l) ?  true : false;
 	}
 	
 	@Override
 	public List<RegistroParqueo> consultarVehiculosIngresados() {
 		List<RegistroParqueoEntidad> listRegistroParqueoEntidad = conexionDBRegistroParqueo.findByEstadoInOutOrderByIdDesc(EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado());
 		
-		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
+		List<RegistroParqueo> listRegistroParqueo = new ArrayList<>();
 		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoEntidad) {
 			listRegistroParqueo.add(fabricaRegistroParqueo.convertirEntityADominio(registroParqueoEntidad));
 		}
@@ -65,7 +60,7 @@ public class RegistroParqueoDao implements RepositorioRegistroParqueo {
 	public List<RegistroParqueo> consultarVehiculosRetirados() {
 		List<RegistroParqueoEntidad> listRegistroParqueoEntidad = conexionDBRegistroParqueo.findByEstadoInOutOrderByIdDesc(EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado());
 		
-		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
+		List<RegistroParqueo> listRegistroParqueo = new ArrayList<>();
 		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoEntidad) {
 			listRegistroParqueo.add(fabricaRegistroParqueo.convertirEntityADominio(registroParqueoEntidad));
 		}
