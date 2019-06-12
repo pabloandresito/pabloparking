@@ -1,12 +1,12 @@
 pipeline{
 	
 		agent {
-		label 'ceiba_induccion'
+		label 'Slave5'
 		}
 	
         
 		triggers {
-        pollSCM('@hourly')
+        
 		}
 	
 		tools {
