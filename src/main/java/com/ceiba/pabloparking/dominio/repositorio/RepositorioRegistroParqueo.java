@@ -44,6 +44,12 @@ public interface RepositorioRegistroParqueo {
 	 * @return java.util.List<RegistroParqueo>
 	 */
 	List<RegistroParqueo> consultarVehiculosIngresados();
+	
+	/**
+	 * Permite consultar la lista de vehiculos (Carros y Motos) que estan retirados del parqueadero
+	 * @return java.util.List<RegistroParqueo>
+	 */
+	List<RegistroParqueo> consultarVehiculosRetirados();
 		
 	/**
 	 * Permite hacer un count por tipoVehiculo y estadoVehiculoInOut

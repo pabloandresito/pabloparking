@@ -7,6 +7,8 @@ app.controller("registroParqueo", function($scope, $http) {
     $scope.registroParqueoDto = [];
 
     $scope.textError = "";
+    
+    $scope.textRetirar = "";
 
     refrescarListaVehiculos();
 
@@ -51,7 +53,7 @@ app.controller("registroParqueo", function($scope, $http) {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(success, error);
+        }).then(successRetirar, error);
     };
 
     function refrescarListaVehiculos() {
@@ -68,8 +70,15 @@ app.controller("registroParqueo", function($scope, $http) {
     function success(res) {
     	refrescarListaVehiculos();
         limpiarFormulario();
+        $scope.textRetirar = res.data.message;
     }
-
+    
+    function successRetirar(res) {
+    	refrescarListaVehiculos();
+        limpiarFormulario();
+        $scope.textRetirar = res.data.message;
+    }
+    
     function error(res) {
         var data = res.data;
         var status = res.status;
@@ -81,6 +90,7 @@ app.controller("registroParqueo", function($scope, $http) {
         $scope.registroParqueoDto.tipoVehiculo = "";
         $scope.registroParqueoDto.cilindraje = "";
         $scope.textError = "";
+        $scope.textRetirar = "";
 
     };
 

@@ -58,7 +58,17 @@ public class RegistroParqueoDao implements RepositorioRegistroParqueo {
 	@Override
 	public List<RegistroParqueo> consultarVehiculosIngresados() {
 		List<RegistroParqueoEntidad> listRegistroParqueoEntidad = conexionDBRegistroParqueo.findByEstadoInOutOrderByIdDesc(EstadoVehiculo.INGRESADO_PARQUEADERO.getIdEstado());
-		//List<RegistroParqueoEntidad> listRegistroParqueoEntidad = conexionDBRegistroParqueo.findByTipoVehiculoOrderByIdDesc(TipoVehiculo.CARRO.getIdTipoVehiculo());
+		
+		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
+		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoEntidad) {
+			listRegistroParqueo.add(fabricaRegistroParqueo.convertirEntityADominio(registroParqueoEntidad));
+		}
+		return listRegistroParqueo;
+	}
+	
+	@Override
+	public List<RegistroParqueo> consultarVehiculosRetirados() {
+		List<RegistroParqueoEntidad> listRegistroParqueoEntidad = conexionDBRegistroParqueo.findByEstadoInOutOrderByIdDesc(EstadoVehiculo.RETIRADO_PARQUEADERO.getIdEstado());
 		
 		List<RegistroParqueo> listRegistroParqueo = new ArrayList<RegistroParqueo>();
 		for (RegistroParqueoEntidad registroParqueoEntidad : listRegistroParqueoEntidad) {
