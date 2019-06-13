@@ -64,12 +64,7 @@ public class RegistroParqueo {
 
 	public Integer getTipoVehiculo() {
 		return tipoVehiculo;
-	}
-
-	// A nivel de negocio no se debe poder modificar el tipo de vehiculo y por esta razon se quita el metodo SET
-//	public void setTipoVehiculo(Integer tipoVehiculo) {
-//		this.tipoVehiculo = tipoVehiculo;
-//	}
+	}// A nivel de negocio no se debe poder modificar el tipo de vehiculo y por esta razon se quita el metodo SET
 
 	public String getPlaca() {
 		return placa;

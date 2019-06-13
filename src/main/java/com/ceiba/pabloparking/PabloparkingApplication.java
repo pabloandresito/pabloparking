@@ -3,8 +3,6 @@ package com.ceiba.pabloparking;
 import java.time.LocalDateTime;
 import java.time.Month;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,8 +17,6 @@ import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqu
 @SpringBootApplication
 public class PabloparkingApplication {
 	
-	private static final Logger log = LoggerFactory.getLogger(PabloparkingApplication.class);
-
 	public static void main(String[] args) {
 		SpringApplication.run(PabloparkingApplication.class, args);
 	}
@@ -54,11 +50,9 @@ public class PabloparkingApplication {
 			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 1, 2, 3, 45);
 			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(null, TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSQ111", 650, fechaHoraIngreso)));
 			
-			// fetch all customers
-			log.info("Motos found with findAll():");
-			log.info("-------------------------------");
+			// fetch all cars and bike
 			for (RegistroParqueoEntidad parqueaderoEntidad : conexionDBRegistroParqueo.findAll()) {
-				log.info(parqueaderoEntidad.getPlaca());
+				System.out.println(parqueaderoEntidad.getPlaca());
 			}
 		};
 	}

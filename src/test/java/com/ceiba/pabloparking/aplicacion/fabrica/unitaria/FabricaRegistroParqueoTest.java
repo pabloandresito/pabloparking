@@ -66,6 +66,34 @@ public class FabricaRegistroParqueoTest {
 	}
 	
 	@Test
+	public void convertirComandoADominioBySettersTest() {
+		
+		// arrange
+		RegistroParqueoTestDataBuilder registroParqueoTestDataBuilder = new RegistroParqueoTestDataBuilder().
+				withTipoVehiculo(TIPOVEHICULO).
+				withPlaca(PLACA).
+				withCilindraje(CILINDRAJE).
+				withFechaHoraIngreso(FECHAHORAINGRESO).
+				withFechaHoraSalida(FECHAHORASALIDA).
+				withValorParqueo(VALORPARQUEO).
+				withEstadoInOut(ESTADOINOUT);
+
+		// act
+		ComandoRegistroParqueo comandoRegistroParqueo = registroParqueoTestDataBuilder.buildComandoBySetters();
+		
+		 RegistroParqueo registroParqueo = fabricaRegistroParqueo.convertirComandoADominio(comandoRegistroParqueo);
+
+		// assert
+		assertEquals(TIPOVEHICULO, registroParqueo.getTipoVehiculo());
+		assertEquals(PLACA, registroParqueo.getPlaca());
+		assertEquals(CILINDRAJE, registroParqueo.getCilindraje());
+		assertEquals(FECHAHORAINGRESO, registroParqueo.getFechaHoraIngreso());
+		assertEquals(FECHAHORASALIDA, registroParqueo.getFechaHoraSalida());
+		assertEquals(VALORPARQUEO, registroParqueo.getValorParqueo());
+		assertEquals(ESTADOINOUT, registroParqueo.getEstadoInOut());
+	}
+	
+	@Test
 	public void convertirEntityADominioTest() {
 		
 		// arrange

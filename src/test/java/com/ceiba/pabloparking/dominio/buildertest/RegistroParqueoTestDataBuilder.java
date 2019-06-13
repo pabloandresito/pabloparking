@@ -120,7 +120,7 @@ public class RegistroParqueoTestDataBuilder {
 		return registroParqueoEntidad;
 	}
 	
-	public ComandoRegistroParqueo buildComando() {
+	public ComandoRegistroParqueo buildComandoBySetters() {
 		
 		ComandoRegistroParqueo comandoRegistroParqueo = new ComandoRegistroParqueo();
 		
@@ -132,6 +132,20 @@ public class RegistroParqueoTestDataBuilder {
 		comandoRegistroParqueo.setFechaHoraSalida(this.fechaHoraSalida); 
 		comandoRegistroParqueo.setValorParqueo(this.valorParqueo); 
 		comandoRegistroParqueo.setEstadoInOut(this.estadoInOut);
+		
+		return comandoRegistroParqueo;
+	}
+	
+	public ComandoRegistroParqueo buildComando() {
+		
+		ComandoRegistroParqueo comandoRegistroParqueo = new ComandoRegistroParqueo(this.id, 
+																					this.tipoVehiculo, 
+																					this.placa, 
+																					this.cilindraje, 
+																					this.fechaHoraIngreso, 
+																					this.fechaHoraSalida, 
+																					this.valorParqueo, 
+																					this.estadoInOut);
 		
 		return comandoRegistroParqueo;
 	}
