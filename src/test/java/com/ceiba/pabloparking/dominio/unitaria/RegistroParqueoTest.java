@@ -7,6 +7,7 @@ import java.time.Month;
 
 import org.junit.Test;
 
+import com.ceiba.pabloparking.aplicacion.comando.ComandoRegistroParqueo;
 import com.ceiba.pabloparking.dominio.EstadoVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
@@ -14,6 +15,8 @@ import com.ceiba.pabloparking.dominio.buildertest.RegistroParqueoTestDataBuilder
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionFechaSalidaMenorFechaIngreso;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorObligatorio;
+import com.ceiba.pabloparking.infraestructura.controller.dto.RegistroParqueoDto;
+import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
 public class RegistroParqueoTest {
 	
@@ -53,6 +56,84 @@ public class RegistroParqueoTest {
 		assertEquals(FECHAHORASALIDA, registroParqueo.getFechaHoraSalida());
 		assertEquals(VALORPARQUEO, registroParqueo.getValorParqueo());
 		assertEquals(ESTADOINOUT, registroParqueo.getEstadoInOut());
+	}
+	
+	@Test
+	public void crearRegistroParqueoEntidadTest() {
+		
+		// arrange
+		RegistroParqueoTestDataBuilder registroParqueoTestDataBuilder = new RegistroParqueoTestDataBuilder().
+				withTipoVehiculo(TIPOVEHICULO).
+				withPlaca(PLACA).
+				withCilindraje(CILINDRAJE).
+				withFechaHoraIngreso(FECHAHORAINGRESO).
+				withFechaHoraSalida(FECHAHORASALIDA).
+				withValorParqueo(VALORPARQUEO).
+				withEstadoInOut(ESTADOINOUT);
+
+		// act
+		RegistroParqueoEntidad registroParqueoEntidad = registroParqueoTestDataBuilder.buildEntity();
+
+		// assert
+		assertEquals(TIPOVEHICULO, registroParqueoEntidad.getTipoVehiculo());
+		assertEquals(PLACA, registroParqueoEntidad.getPlaca());
+		assertEquals(CILINDRAJE, registroParqueoEntidad.getCilindraje());
+		assertEquals(FECHAHORAINGRESO, registroParqueoEntidad.getFechaHoraIngreso());
+		assertEquals(FECHAHORASALIDA, registroParqueoEntidad.getFechaHoraSalida());
+		assertEquals(VALORPARQUEO, registroParqueoEntidad.getValorParqueo());
+		assertEquals(ESTADOINOUT, registroParqueoEntidad.getEstadoInOut());
+	}
+	
+	@Test
+	public void crearRegistroParqueoComandoTest() {
+		
+		// arrange
+		RegistroParqueoTestDataBuilder registroParqueoTestDataBuilder = new RegistroParqueoTestDataBuilder().
+				withTipoVehiculo(TIPOVEHICULO).
+				withPlaca(PLACA).
+				withCilindraje(CILINDRAJE).
+				withFechaHoraIngreso(FECHAHORAINGRESO).
+				withFechaHoraSalida(FECHAHORASALIDA).
+				withValorParqueo(VALORPARQUEO).
+				withEstadoInOut(ESTADOINOUT);
+
+		// act
+		ComandoRegistroParqueo comandoRegistroParqueo = registroParqueoTestDataBuilder.buildComando();
+
+		// assert
+		assertEquals(TIPOVEHICULO, comandoRegistroParqueo.getTipoVehiculo());
+		assertEquals(PLACA, comandoRegistroParqueo.getPlaca());
+		assertEquals(CILINDRAJE, comandoRegistroParqueo.getCilindraje());
+		assertEquals(FECHAHORAINGRESO, comandoRegistroParqueo.getFechaHoraIngreso());
+		assertEquals(FECHAHORASALIDA, comandoRegistroParqueo.getFechaHoraSalida());
+		assertEquals(VALORPARQUEO, comandoRegistroParqueo.getValorParqueo());
+		assertEquals(ESTADOINOUT, comandoRegistroParqueo.getEstadoInOut());
+	}
+	
+	@Test
+	public void crearRegistroParqueoDtoTest() {
+		
+		// arrange
+		RegistroParqueoTestDataBuilder registroParqueoTestDataBuilder = new RegistroParqueoTestDataBuilder().
+				withTipoVehiculo(TIPOVEHICULO).
+				withPlaca(PLACA).
+				withCilindraje(CILINDRAJE).
+				withFechaHoraIngreso(FECHAHORAINGRESO).
+				withFechaHoraSalida(FECHAHORASALIDA).
+				withValorParqueo(VALORPARQUEO).
+				withEstadoInOut(ESTADOINOUT);
+
+		// act
+		RegistroParqueoDto registroParqueoDto = registroParqueoTestDataBuilder.buildDto();
+
+		// assert
+		assertEquals(TIPOVEHICULO, registroParqueoDto.getTipoVehiculo());
+		assertEquals(PLACA, registroParqueoDto.getPlaca());
+		assertEquals(CILINDRAJE, registroParqueoDto.getCilindraje());
+		assertEquals(FECHAHORAINGRESO, registroParqueoDto.getFechaHoraIngreso());
+		assertEquals(FECHAHORASALIDA, registroParqueoDto.getFechaHoraSalida());
+		assertEquals(VALORPARQUEO, registroParqueoDto.getValorParqueo());
+		assertEquals(ESTADOINOUT, registroParqueoDto.getEstadoInOut());
 	}
 	
 	@Test(expected = ExcepcionValorObligatorio.class)

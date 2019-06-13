@@ -12,8 +12,6 @@ import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorObligatorio;
 
 public class ValidadorArgumento {
 	
-	private ValidadorArgumento() {}
-
     public static void validarObligatorio(Object valor, String mensaje) {
         if (valor == null) {
             throw new ExcepcionValorObligatorio(mensaje);
@@ -39,10 +37,8 @@ public class ValidadorArgumento {
     }
     
     public static void validarNoLunesNiDomingoPlacaIniciaConA(String placa, LocalDateTime fechaHoraIngreso, String mensaje) {
-		if(validarPlacaIniciaConA(placa)) {
-			if( !(fechaHoraIngreso.getDayOfWeek() == DayOfWeek.MONDAY || fechaHoraIngreso.getDayOfWeek() == DayOfWeek.SUNDAY) ) {
-				throw new ExcepcionValorInvalido(mensaje);
-			}
+		if(validarPlacaIniciaConA(placa) && ( !(fechaHoraIngreso.getDayOfWeek() == DayOfWeek.MONDAY || fechaHoraIngreso.getDayOfWeek() == DayOfWeek.SUNDAY) ) ){
+			throw new ExcepcionValorInvalido(mensaje);
 		}
 	}
 

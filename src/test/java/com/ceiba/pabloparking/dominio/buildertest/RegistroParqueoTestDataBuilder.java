@@ -3,9 +3,11 @@ package com.ceiba.pabloparking.dominio.buildertest;
 import java.time.LocalDateTime;
 import java.time.Month;
 
+import com.ceiba.pabloparking.aplicacion.comando.ComandoRegistroParqueo;
 import com.ceiba.pabloparking.dominio.EstadoVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
+import com.ceiba.pabloparking.infraestructura.controller.dto.RegistroParqueoDto;
 import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
 public class RegistroParqueoTestDataBuilder {
@@ -116,5 +118,51 @@ public class RegistroParqueoTestDataBuilder {
 		registroParqueoEntidad.setEstadoInOut(this.estadoInOut);
 		
 		return registroParqueoEntidad;
+	}
+	
+	public ComandoRegistroParqueo buildComandoBySetters() {
+		
+		ComandoRegistroParqueo comandoRegistroParqueo = new ComandoRegistroParqueo();
+		
+		comandoRegistroParqueo.setId(this.id);
+		comandoRegistroParqueo.setTipoVehiculo(this.tipoVehiculo);
+		comandoRegistroParqueo.setPlaca(this.placa);
+		comandoRegistroParqueo.setCilindraje(this.cilindraje);
+		comandoRegistroParqueo.setFechaHoraIngreso(this.fechaHoraIngreso);
+		comandoRegistroParqueo.setFechaHoraSalida(this.fechaHoraSalida); 
+		comandoRegistroParqueo.setValorParqueo(this.valorParqueo); 
+		comandoRegistroParqueo.setEstadoInOut(this.estadoInOut);
+		
+		return comandoRegistroParqueo;
+	}
+	
+	public ComandoRegistroParqueo buildComando() {
+		
+		ComandoRegistroParqueo comandoRegistroParqueo = new ComandoRegistroParqueo(this.id, 
+																					this.tipoVehiculo, 
+																					this.placa, 
+																					this.cilindraje, 
+																					this.fechaHoraIngreso, 
+																					this.fechaHoraSalida, 
+																					this.valorParqueo, 
+																					this.estadoInOut);
+		
+		return comandoRegistroParqueo;
+	}
+	
+	public RegistroParqueoDto buildDto() {
+		
+		RegistroParqueoDto registroParqueoDto = new RegistroParqueoDto();
+		
+		registroParqueoDto.setId(this.id);
+		registroParqueoDto.setTipoVehiculo(this.tipoVehiculo);
+		registroParqueoDto.setPlaca(this.placa);
+		registroParqueoDto.setCilindraje(this.cilindraje);
+		registroParqueoDto.setFechaHoraIngreso(this.fechaHoraIngreso);
+		registroParqueoDto.setFechaHoraSalida(this.fechaHoraSalida); 
+		registroParqueoDto.setValorParqueo(this.valorParqueo); 
+		registroParqueoDto.setEstadoInOut(this.estadoInOut);
+		
+		return registroParqueoDto;
 	}
 }

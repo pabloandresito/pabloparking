@@ -3,8 +3,6 @@ package com.ceiba.pabloparking;
 import java.time.LocalDateTime;
 import java.time.Month;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,13 +12,10 @@ import com.ceiba.pabloparking.aplicacion.fabrica.FabricaRegistroParqueo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
 import com.ceiba.pabloparking.infraestructura.persistencia.dao.ConexionDBRegistroParqueo;
-import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
 @SpringBootApplication
 public class PabloparkingApplication {
 	
-	private static final Logger log = LoggerFactory.getLogger(PabloparkingApplication.class);
-
 	public static void main(String[] args) {
 		SpringApplication.run(PabloparkingApplication.class, args);
 	}
@@ -54,12 +49,8 @@ public class PabloparkingApplication {
 			fechaHoraIngreso = LocalDateTime.of(2019, Month.JUNE, 1, 2, 3, 45);
 			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(null, TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSQ111", 650, fechaHoraIngreso)));
 			
-			// fetch all customers
-			log.info("Motos found with findAll():");
-			log.info("-------------------------------");
-			for (RegistroParqueoEntidad parqueaderoEntidad : conexionDBRegistroParqueo.findAll()) {
-				log.info(parqueaderoEntidad.getPlaca());
-			}
+			// fetch all cars and bike
+			conexionDBRegistroParqueo.findAll();
 		};
 	}
 }
