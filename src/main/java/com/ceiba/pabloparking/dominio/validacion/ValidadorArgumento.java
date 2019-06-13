@@ -12,8 +12,6 @@ import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorObligatorio;
 
 public class ValidadorArgumento {
 	
-	public ValidadorArgumento() {}
-
     public static void validarObligatorio(Object valor, String mensaje) {
         if (valor == null) {
             throw new ExcepcionValorObligatorio(mensaje);

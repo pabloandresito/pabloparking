@@ -12,7 +12,6 @@ import com.ceiba.pabloparking.aplicacion.fabrica.FabricaRegistroParqueo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.dominio.TipoVehiculo;
 import com.ceiba.pabloparking.infraestructura.persistencia.dao.ConexionDBRegistroParqueo;
-import com.ceiba.pabloparking.infraestructura.persistencia.entidad.RegistroParqueoEntidad;
 
 @SpringBootApplication
 public class PabloparkingApplication {
@@ -51,9 +50,7 @@ public class PabloparkingApplication {
 			conexionDBRegistroParqueo.save(fabricaRegistroParqueo.convertirDominoAEntity(new RegistroParqueo(null, TipoVehiculo.MOTO.getIdTipoVehiculo(), "MSQ111", 650, fechaHoraIngreso)));
 			
 			// fetch all cars and bike
-			for (RegistroParqueoEntidad parqueaderoEntidad : conexionDBRegistroParqueo.findAll()) {
-				System.out.println(parqueaderoEntidad.getPlaca());
-			}
+			conexionDBRegistroParqueo.findAll();
 		};
 	}
 }
