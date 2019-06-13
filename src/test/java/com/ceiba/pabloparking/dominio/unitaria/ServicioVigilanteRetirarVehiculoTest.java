@@ -22,17 +22,17 @@ public class ServicioVigilanteRetirarVehiculoTest {
 		
 		double valorParqueoCarro = vigilanteRetirarVehiculoMock.calcularValorParqueoCarro(diasPorCobrar, horasRestantesPorCobrarEnCero);
 		
-		assertEquals((diasPorCobrar * vigilanteRetirarVehiculoMock.valorDiaCarro), valorParqueoCarro, 0d);
+		assertEquals((diasPorCobrar * vigilanteRetirarVehiculoMock.VALOR_DIA_CARRO), valorParqueoCarro, 0d);
 	}
 	
 	@Test
 	public void calcularValorParqueoCarroConHorasRestantesMayorAlLimiteDia() {
 		double diasPorCobrar = 5d;
-		double horasRestantesPorCobrar = vigilanteRetirarVehiculoMock.horaDeInicioParaCobroDeDiaCompleto + 1d;
+		double horasRestantesPorCobrar = vigilanteRetirarVehiculoMock.HORA_DE_INICIO_PARA_COBRO_DE_DIA_COMPLETO + 1d;
 		
 		double valorParqueoCarro = vigilanteRetirarVehiculoMock.calcularValorParqueoCarro(diasPorCobrar, horasRestantesPorCobrar);
 		
-		assertEquals( (diasPorCobrar * vigilanteRetirarVehiculoMock.valorDiaCarro) + (vigilanteRetirarVehiculoMock.valorDiaCarro), valorParqueoCarro, 0d);
+		assertEquals( (diasPorCobrar * vigilanteRetirarVehiculoMock.VALOR_DIA_CARRO) + (vigilanteRetirarVehiculoMock.VALOR_DIA_CARRO), valorParqueoCarro, 0d);
 	}
 	
 	@Test
@@ -43,28 +43,28 @@ public class ServicioVigilanteRetirarVehiculoTest {
 		
 		double valorParqueoCarro = vigilanteRetirarVehiculoMock.calcularValorParqueoMoto(diasPorCobrar, horasRestantesPorCobrarEnCero, cilindraje);
 		
-		assertEquals((diasPorCobrar * vigilanteRetirarVehiculoMock.valorDiaMoto), valorParqueoCarro, 0d);
+		assertEquals((diasPorCobrar * vigilanteRetirarVehiculoMock.VALOR_DIA_MOTO), valorParqueoCarro, 0d);
 	}
 	
 	@Test
 	public void calcularValorParqueoMotoConHorasRestantesMayorAlLimiteDia() {
 		double diasPorCobrar = 5d;
-		double horasRestantesPorCobrar = vigilanteRetirarVehiculoMock.horaDeInicioParaCobroDeDiaCompleto + 1d;
+		double horasRestantesPorCobrar = vigilanteRetirarVehiculoMock.HORA_DE_INICIO_PARA_COBRO_DE_DIA_COMPLETO + 1d;
 		int cilindraje = 1;
 		
 		double valorParqueoCarro = vigilanteRetirarVehiculoMock.calcularValorParqueoMoto(diasPorCobrar, horasRestantesPorCobrar, cilindraje);
 		
-		assertEquals( (diasPorCobrar * vigilanteRetirarVehiculoMock.valorDiaMoto) + (vigilanteRetirarVehiculoMock.valorDiaMoto), valorParqueoCarro, 0d);
+		assertEquals( (diasPorCobrar * vigilanteRetirarVehiculoMock.VALOR_DIA_MOTO) + (vigilanteRetirarVehiculoMock.VALOR_DIA_MOTO), valorParqueoCarro, 0d);
 	}
 	
 	@Test
 	public void calcularValorParqueoMotoConHorasRestantesMayorAlLimiteDiaYMaxCilingraje() {
 		double diasPorCobrar = 5d;
-		double horasRestantesPorCobrar = vigilanteRetirarVehiculoMock.horaDeInicioParaCobroDeDiaCompleto + 1d;
-		int cilindrajeSuperiorAlMaximo = vigilanteRetirarVehiculoMock.valorLimiteCilindrajeParaCobroExcedenteMoto + 1;
+		double horasRestantesPorCobrar = vigilanteRetirarVehiculoMock.HORA_DE_INICIO_PARA_COBRO_DE_DIA_COMPLETO + 1d;
+		int cilindrajeSuperiorAlMaximo = vigilanteRetirarVehiculoMock.VALOR_LIMITE_CILINDRAJE_PARA_COBRO_EXCEDENTE_MOTO + 1;
 		
 		double valorParqueoCarro = vigilanteRetirarVehiculoMock.calcularValorParqueoMoto(diasPorCobrar, horasRestantesPorCobrar, cilindrajeSuperiorAlMaximo);
 		
-		assertEquals( (diasPorCobrar * vigilanteRetirarVehiculoMock.valorDiaMoto) + (vigilanteRetirarVehiculoMock.valorDiaMoto) + (vigilanteRetirarVehiculoMock.valorExcedenteMotoMayor500CC), valorParqueoCarro, 0d);
+		assertEquals( (diasPorCobrar * vigilanteRetirarVehiculoMock.VALOR_DIA_MOTO) + (vigilanteRetirarVehiculoMock.VALOR_DIA_MOTO) + (vigilanteRetirarVehiculoMock.VALOR_EXCEDENTE_MOTO_MAYOR_500CC), valorParqueoCarro, 0d);
 	}
 }
