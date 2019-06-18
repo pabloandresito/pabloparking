@@ -81,7 +81,7 @@
             <tr ng-repeat="vehiculo in listVehiculosIngresados">
             	<td hidden="true">{{vehiculo.id}}</td>
                 <th scope="row">{{vehiculo.placa}}</th>
-                <td>{{vehiculo.tipoVehiculo}}</td>
+                <td>{{ vehiculo.tipoVehiculo == 1 ? "Carro" : "Moto" }}</td>
                 <td>{{vehiculo.cilindraje}}</td>
                 <td>{{vehiculo.fechaHoraIngreso}}</td>
                 <td>
