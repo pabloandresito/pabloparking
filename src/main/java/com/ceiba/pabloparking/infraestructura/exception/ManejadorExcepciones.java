@@ -1,8 +1,5 @@
 package com.ceiba.pabloparking.infraestructura.exception;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +9,9 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.ceiba.pabloparking.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.pabloparking.dominio.excepcion.ExcepcionSinDatos;
+import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorInvalido;
+import com.ceiba.pabloparking.dominio.excepcion.ExcepcionValorObligatorio;
 
 @ControllerAdvice
 public class ManejadorExcepciones extends ResponseEntityExceptionHandler {
@@ -23,9 +23,22 @@ public class ManejadorExcepciones extends ResponseEntityExceptionHandler {
     }
 	
 	@ExceptionHandler(value = { ExcepcionDuplicidad.class })
-    protected ResponseEntity<Object> handleConflictExcepcionDuplicidad(RuntimeException ex, WebRequest request) {
-        Map<String, String> mapResponse = new HashMap<>();
-		mapResponse.put("message", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(mapResponse);
+    protected ResponseEntity<String> handleConflictExcepcionDuplicidad(RuntimeException ex, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(ex.getMessage());
+    }
+	
+	@ExceptionHandler(value = { ExcepcionSinDatos.class })
+    protected ResponseEntity<String> handleConflictExcepcionSinDatos(RuntimeException ex, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
+	
+	@ExceptionHandler(value = { ExcepcionValorInvalido.class })
+    protected ResponseEntity<String> handleConflictExcepcionValorInvalido(RuntimeException ex, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
+	
+	@ExceptionHandler(value = { ExcepcionValorObligatorio.class })
+    protected ResponseEntity<String> handleConflictExcepcionValorObligatorio(RuntimeException ex, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 }
