@@ -1,23 +1,23 @@
 package com.ceiba.pabloparking.infraestructura.controller;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.ceiba.pabloparking.aplicacion.manejador.ManejadorVigilanteRegistrarVehiculo;
 import com.ceiba.pabloparking.dominio.RegistroParqueo;
 import com.ceiba.pabloparking.infraestructura.controller.dto.RegistroParqueoDto;
+import com.ceiba.pabloparking.infraestructura.controller.dto.ResponseApi;
 
 @Controller
 @CrossOrigin
@@ -30,19 +30,21 @@ public class RegistroParqueoController {
     private ManejadorVigilanteRegistrarVehiculo manejadorVigilanteRegistrarVehiculo;
 	
 	@GetMapping(value = "/list-vehiculos")
-	public ResponseEntity<List<RegistroParqueo>> listVehiculos(){
-		return new ResponseEntity<>(manejadorVigilanteRegistrarVehiculo.consultarVehiculosIngresados(), HttpStatus.OK);
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<RegistroParqueo> listVehiculos(){
+		  return manejadorVigilanteRegistrarVehiculo.consultarVehiculosIngresados();
+		
+		
 	}
 	
 	@PostMapping(value = "/ingresar")
-	public ResponseEntity<Map<String, String>> ingresar(@RequestBody RegistroParqueoDto registroParqueoDto){
+	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseBody
+	public ResponseApi ingresar(@RequestBody RegistroParqueoDto registroParqueoDto){
 		LocalDateTime fechaHoraIngreso = LocalDateTime.now();
 		registroParqueoDto.setFechaHoraIngreso(fechaHoraIngreso);
 		manejadorVigilanteRegistrarVehiculo.ejecutar(registroParqueoDto);
-		
-		Map<String, String> mapResponse = new HashMap<>();
-		mapResponse.put("message", VEHICULO_INGRESADO_EXITOSAMENTE);
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(mapResponse);
+		return new ResponseApi(VEHICULO_INGRESADO_EXITOSAMENTE);
 	}
 }
